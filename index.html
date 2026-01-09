@@ -40,11 +40,6 @@
       padding: 15px 30px;
     }
 
-    .music-btn {
-      margin-left: 10px;
-      font-size: 0.7rem;
-    }
-
     nav .logo { color: var(--accent); }
 
     nav a, nav button {
@@ -96,12 +91,7 @@
       box-shadow: 0 0 0 2px rgba(34,197,94,0.3);
     }
 
-    .ip-box .ip-label {
-      font-size: 0.7rem;
-      opacity: 0.8;
-    }
-
-    .ip-box .ip-value {
+    .ip-value {
       background: var(--bg);
       padding: 14px 20px;
       border-radius: 10px;
@@ -109,43 +99,36 @@
       width: 100%;
       max-width: 420px;
       text-align: center;
-      font-size: 0.75rem;
       user-select: all;
-    }
-
-    input {
-      display: none;
     }
 
     footer { background: var(--card); text-align: center; padding: 30px; font-size: 0.7rem; }
 
-    .rating {
-      text-align: center;
-    }
-
-    .stars {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      font-size: 1.4rem;
+    /* MUSIC BANNER */
+    #musicBanner {
+      position: fixed;
+      bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--card);
+      border: 2px solid var(--accent);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      z-index: 2000;
       cursor: pointer;
     }
 
-    .star {
-      color: gray;
-      transition: transform .2s, color .2s;
-    }
-
-    .star.active {
-      color: gold;
-      transform: scale(1.2);
-    }
+    /* RATING */
+    .stars { display: flex; justify-content: center; gap: 10px; font-size: 1.4rem; cursor: pointer; }
+    .star { color: gray; transition: transform .2s, color .2s; }
+    .star.active { color: gold; transform: scale(1.2); }
   </style>
 </head>
 <body>
 
 <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
-<audio id="bgMusic" src="https://archive.org/download/MinecraftVolumeAlpha/Minecraft%20-%20Volume%20Alpha%20-%2001%20Key.mp3" loop preload="auto"></audio>
+<audio id="bgMusic" preload="auto"></audio>
+
+<div id="musicBanner" onclick="enableMusic()">🎵 Click to enable Minecraft music</div>
 
 <nav>
   <div class="logo">⛏ MY MINECRAFT SERVER</div>
@@ -156,7 +139,7 @@
     <a onclick="playClick()" href="#join">JOIN</a>
     <a onclick="playClick()" href="#discord">DISCORD</a>
     <button onclick="toggleTheme(); playClick();">☀ / 🌙</button>
-    <button class="music-btn" onclick="toggleMusic(); playClick();">🎵 MUSIC</button>
+    <button onclick="toggleMusic(); playClick();">🎵 MUSIC</button>
   </div>
 </nav>
 
@@ -172,9 +155,7 @@
     <p><span id="dot" class="dot"></span> <strong id="statusText">Loading...</strong></p>
     <p>Players: <span id="players">-</span></p>
     <p>Version: <span id="version">-</span></p>
-    <p>MOTD:</p>
     <pre id="motd">Loading...</pre>
-    <small>Auto refresh every 15 seconds</small>
   </div>
 </section>
 
@@ -190,24 +171,14 @@
 <section id="join">
   <h2>HOW TO JOIN</h2>
   <div class="card ip-box">
-    <div class="ip-label">JAVA EDITION SERVER IP</div>
-    <div class="ip-value" id="ipText">SuperGara.aternos.me</div>
+    <div class="ip-value" id="ipText">  Strong-Valerry.aternos.me</div>
     <button class="btn" onclick="copyIP(); playClick();">COPY IP</button>
-    <small>Click the button and paste it in Multiplayer → Add Server</small>
-  </div>
-</section>
-
-<section id="discord">
-  <h2>PAYMENTS & SUPPORT</h2>
-  <div class="card">
-    <a class="btn" onclick="playClick()" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
   </div>
 </section>
 
 <section id="rating">
   <h2>RATE OUR WEBSITE</h2>
-  <div class="card rating">
-    <p>Do you like our website?</p>
+  <div class="card">
     <div class="stars" id="stars">
       <span class="star" data-rate="1">★</span>
       <span class="star" data-rate="2">★</span>
@@ -215,18 +186,17 @@
       <span class="star" data-rate="4">★</span>
       <span class="star" data-rate="5">★</span>
     </div>
-    <small>Your rating is saved on this device</small>
+    <small>Rating is saved locally (GitHub Pages cannot store global ratings)</small>
   </div>
 </section>
 
 <footer>© 2026 MY MINECRAFT SERVER</footer>
 
 <script>
-  const SERVER_IP = 'SuperGara.aternos.me'; // CHANGE THIS
+  const SERVER_IP = 'Strong-Valerry.aternos.me';
 
   function playClick() {
-    const s = document.getElementById('clickSound');
-    s.currentTime = 0; s.play();
+    const s = document.getElementById('clickSound'); s.currentTime = 0; s.play();
   }
 
   function toggleTheme() {
@@ -234,84 +204,51 @@
     localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
   }
 
-  // LOAD SAVED THEME
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-  }
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
 
   function copyIP() {
-    const ip = document.getElementById('ipInput');
-    ip.select();
-    document.execCommand('copy');
+    navigator.clipboard.writeText(SERVER_IP);
     alert('Server IP copied!');
   }
 
   function updateStatus() {
-    fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`)
-      .then(r => r.json())
-      .then(d => {
-        const dot = document.getElementById('dot');
-        dot.className = 'dot';
-        if (d.online) {
-          dot.classList.add('online');
-          statusText.textContent = 'ONLINE';
-          players.textContent = `${d.players.online}/${d.players.max}`;
-          version.textContent = d.version;
-          motd.textContent = d.motd.clean.join('\n');
-        } else {
-          dot.classList.add('offline');
-          statusText.textContent = 'OFFLINE';
-          motd.textContent = 'Server offline';
-        }
-      });
+    fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`).then(r=>r.json()).then(d=>{
+      dot.className='dot';
+      if(d.online){dot.classList.add('online');statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version;motd.textContent=d.motd.clean.join('\n');}
+      else{dot.classList.add('offline');statusText.textContent='OFFLINE';}
+    });
   }
+  updateStatus(); setInterval(updateStatus,15000);
 
-  updateStatus();
-  setInterval(updateStatus, 15000);
-
-  // BACKGROUND MUSIC TOGGLE
+  /* MUSIC SYSTEM */
+  const tracks = [
+    'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/C418/Minecraft_-_Volume_Alpha/C418_-_Minecraft.mp3',
+    'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/C418/Minecraft_-_Volume_Alpha/C418_-_Key.mp3'
+  ];
   const bg = document.getElementById('bgMusic');
   let musicOn = false;
 
-  function toggleMusic() {
-    if (!musicOn) {
-      bg.volume = 0.3;
-      bg.play();
-      musicOn = true;
-      localStorage.setItem('music', 'on');
-    } else {
-      bg.pause();
-      musicOn = false;
-      localStorage.setItem('music', 'off');
-    }
+  function fadeIn(){bg.volume=0;bg.play();let v=0;const i=setInterval(()=>{v+=0.02;bg.volume=Math.min(v,0.25);if(v>=0.25)clearInterval(i);},100);}  
+  function fadeOut(){let v=bg.volume;const i=setInterval(()=>{v-=0.02;bg.volume=Math.max(v,0);if(v<=0){bg.pause();clearInterval(i);}},100);}  
+
+  function enableMusic(){document.getElementById('musicBanner').style.display='none';toggleMusic();}
+
+  function toggleMusic(){
+    if(!musicOn){bg.src=tracks[Math.floor(Math.random()*tracks.length)];fadeIn();musicOn=true;localStorage.setItem('music','on');}
+    else{fadeOut();musicOn=false;localStorage.setItem('music','off');}
   }
 
-  if (localStorage.getItem('music') === 'on') {
-    bg.volume = 0.3;
-    bg.play().catch(() => {});
-    musicOn = true;
-  }
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && musicOn) fadeOut();});
 
-  // RATING SYSTEM
-  const stars = document.querySelectorAll('.star');
-  const savedRating = localStorage.getItem('rating');
-
-  function paintStars(rate) {
-    stars.forEach(s => {
-      s.classList.toggle('active', s.dataset.rate <= rate);
-    });
-  }
-
-  if (savedRating) paintStars(savedRating);
-
-  stars.forEach(star => {
-    star.addEventListener('click', () => {
-      const rate = star.dataset.rate;
-      localStorage.setItem('rating', rate);
-      paintStars(rate);
-    });
-  });
+  /* RATING (LOCAL ONLY) */
+  const stars=document.querySelectorAll('.star');
+  const saved=localStorage.getItem('rating');
+  function paint(r){stars.forEach(s=>s.classList.toggle('active',s.dataset.rate<=r));}
+  if(saved) paint(saved);
+  stars.forEach(s=>s.onclick=()=>{localStorage.setItem('rating',s.dataset.rate);paint(s.dataset.rate);});
 </script>
 
 </body>
+</html>
+
 </html>
