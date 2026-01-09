@@ -40,6 +40,11 @@
       padding: 15px 30px;
     }
 
+    .music-btn {
+      margin-left: 10px;
+      font-size: 0.7rem;
+    }
+
     nav .logo { color: var(--accent); }
 
     nav a, nav button {
@@ -113,11 +118,34 @@
     }
 
     footer { background: var(--card); text-align: center; padding: 30px; font-size: 0.7rem; }
+
+    .rating {
+      text-align: center;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .star {
+      color: gray;
+      transition: transform .2s, color .2s;
+    }
+
+    .star.active {
+      color: gold;
+      transform: scale(1.2);
+    }
   </style>
 </head>
 <body>
 
 <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="https://archive.org/download/MinecraftVolumeAlpha/Minecraft%20-%20Volume%20Alpha%20-%2001%20Key.mp3" loop preload="auto"></audio>
 
 <nav>
   <div class="logo">⛏ MY MINECRAFT SERVER</div>
@@ -128,6 +156,7 @@
     <a onclick="playClick()" href="#join">JOIN</a>
     <a onclick="playClick()" href="#discord">DISCORD</a>
     <button onclick="toggleTheme(); playClick();">☀ / 🌙</button>
+    <button class="music-btn" onclick="toggleMusic(); playClick();">🎵 MUSIC</button>
   </div>
 </nav>
 
@@ -172,6 +201,21 @@
   <h2>PAYMENTS & SUPPORT</h2>
   <div class="card">
     <a class="btn" onclick="playClick()" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
+  </div>
+</section>
+
+<section id="rating">
+  <h2>RATE OUR WEBSITE</h2>
+  <div class="card rating">
+    <p>Do you like our website?</p>
+    <div class="stars" id="stars">
+      <span class="star" data-rate="1">★</span>
+      <span class="star" data-rate="2">★</span>
+      <span class="star" data-rate="3">★</span>
+      <span class="star" data-rate="4">★</span>
+      <span class="star" data-rate="5">★</span>
+    </div>
+    <small>Your rating is saved on this device</small>
   </div>
 </section>
 
@@ -224,6 +268,49 @@
 
   updateStatus();
   setInterval(updateStatus, 15000);
+
+  // BACKGROUND MUSIC TOGGLE
+  const bg = document.getElementById('bgMusic');
+  let musicOn = false;
+
+  function toggleMusic() {
+    if (!musicOn) {
+      bg.volume = 0.3;
+      bg.play();
+      musicOn = true;
+      localStorage.setItem('music', 'on');
+    } else {
+      bg.pause();
+      musicOn = false;
+      localStorage.setItem('music', 'off');
+    }
+  }
+
+  if (localStorage.getItem('music') === 'on') {
+    bg.volume = 0.3;
+    bg.play().catch(() => {});
+    musicOn = true;
+  }
+
+  // RATING SYSTEM
+  const stars = document.querySelectorAll('.star');
+  const savedRating = localStorage.getItem('rating');
+
+  function paintStars(rate) {
+    stars.forEach(s => {
+      s.classList.toggle('active', s.dataset.rate <= rate);
+    });
+  }
+
+  if (savedRating) paintStars(savedRating);
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const rate = star.dataset.rate;
+      localStorage.setItem('rating', rate);
+      paintStars(rate);
+    });
+  });
 </script>
 
 </body>
