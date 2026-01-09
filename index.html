@@ -34,10 +34,16 @@
     }
 
     nav {
-      position: sticky; top: 0; z-index: 1000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       background: var(--card);
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 15px 30px;
+      transition: transform .3s ease;
+    }
     }
 
     nav .logo { color: var(--accent); }
@@ -50,6 +56,10 @@
       font-family: inherit;
       font-size: 0.75rem;
       cursor: pointer;
+      transition: color .2s ease, transform .15s ease;
+    }
+
+    nav button:hover { transform: scale(1.05); }
     }
 
     nav a:hover, nav button:hover { color: var(--accent); }
@@ -121,6 +131,23 @@
     .stars { display: flex; justify-content: center; gap: 10px; font-size: 1.4rem; cursor: pointer; }
     .star { color: gray; transition: transform .2s, color .2s; }
     .star.active { color: gold; transform: scale(1.2); }
+      /* MOBILE NAVBAR CLEANUP */
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      nav a { display: none; }
+      nav .logo { font-size: .7rem; }
+      #langBtn { font-size: .7rem; margin-left: 8px; }
+    }
+
+    #langBtn {
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: .7rem;
+    }
+
+    #langBtn:active { transform: scale(.95); }
   </style>
 </head>
 <body>
@@ -133,20 +160,20 @@
 <nav>
   <div class="logo">⛏ MY MINECRAFT SERVER</div>
   <div>
-    <a onclick="playClick()" href="#home">HOME</a>
-    <a onclick="playClick()" href="#status">STATUS</a>
-    <a onclick="playClick()" href="#store">STORE</a>
-    <a onclick="playClick()" href="#join">JOIN</a>
-    <a onclick="playClick()" href="#discord">DISCORD</a>
+    <a onclick="playClick()" href="#home" data-i18n="nav_home">HOME</a>
+    <a onclick="playClick()" href="#status" data-i18n="nav_status">STATUS</a>
+    <a onclick="playClick()" href="#store" data-i18n="nav_store">STORE</a>
+    <a onclick="playClick()" href="#join" data-i18n="nav_join">JOIN</a>
+    <a onclick="playClick()" href="#discord" data-i18n="nav_discord">DISCORD</a>
     <button onclick="toggleTheme(); playClick();">☀ / 🌙</button>
-    
+    <button id="langBtn" onclick="cycleLang(); playClick();" style="margin-left:10px">🌐 EN</button>
   </div>
 </nav>
 
 <header id="home">
-  <h1>MY MINECRAFT SERVER</h1>
-  <p>SURVIVAL • PVP • ECONOMY</p>
-  <a class="btn" onclick="playClick()" href="#join">PLAY NOW</a>
+  <h1 data-i18n="title">MY MINECRAFT SERVER</h1>
+  <p data-i18n="subtitle">SURVIVAL • PVP • ECONOMY</p>
+  <a class="btn" onclick="playClick()" href="#join" data-i18n="play_now">PLAY NOW</a>
 </header>
 
 <section id="status">
@@ -165,7 +192,7 @@
 
     <pre id="motd" style="margin-top:15px;opacity:.8">Loading MOTD...</pre>
 
-    <a class="btn" style="margin-top:15px" href="https://aternos.org/server/" target="_blank">▶ START SERVER (Aternos)</a>
+    
 
     <div style="margin-top:25px">
       <h3 style="font-size:.9rem">ONLINE PLAYERS</h3>
@@ -215,11 +242,12 @@
 </section>
 
 <section id="join">
-  <h2>HOW TO JOIN</h2>
+  <h2 data-i18n="how_join">HOW TO JOIN</h2>
   <div class="card ip-box">
-    <div class="ip-value" id="ipText">Strong-Valerry.aternos.me</div>
-    <button class="btn" onclick="copyIP(); playClick();">COPY IP</button>
+    <input id="ipInput" value="Strong-Valerry.aternos.me" readonly>
+    <button class="btn" onclick="copyIP(); playClick();" data-i18n="copy_ip">COPY IP</button>
   </div>
+  <p style="opacity:.7;margin-top:10px" data-i18n="join_tip">Java Edition 1.20+ recommended</p>
 </section>
 
 <section id="rating">
@@ -239,10 +267,68 @@
 <footer>© 2026 MY MINECRAFT SERVER</footer>
 
 <script>
+  let lastScrollY = window.scrollY;
+  const navbar = document.querySelector('nav');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 120) {
+      navbar.style.transform = 'translateY(-100%)';
+    } else {
+      navbar.style.transform = 'translateY(0)';
+    }
+    lastScrollY = window.scrollY;
+  });
+
+  // SHOW NAVBAR WHEN MOUSE NEAR TOP
+  window.addEventListener('mousemove', (e) => {
+    if (e.clientY < 80) {
+      navbar.style.transform = 'translateY(0)';
+    }
+  });
+
   const SERVER_IP = 'Strong-Valerry.aternos.me';
 
+  const translations = {
+    en: {
+      nav_home: 'HOME', nav_status: 'STATUS', nav_store: 'STORE', nav_join: 'JOIN', nav_discord: 'DISCORD',
+      title: 'MY MINECRAFT SERVER', subtitle: 'SURVIVAL • PVP • ECONOMY', play_now: 'PLAY NOW',
+      how_join: 'HOW TO JOIN', copy_ip: 'COPY IP', join_tip: 'Java Edition 1.20+ recommended'
+    },
+    fr: {
+      nav_home: 'ACCUEIL', nav_status: 'STATUT', nav_store: 'BOUTIQUE', nav_join: 'REJOINDRE', nav_discord: 'DISCORD',
+      title: 'MON SERVEUR MINECRAFT', subtitle: 'SURVIE • PVP • ÉCONOMIE', play_now: 'JOUER MAINTENANT',
+      how_join: 'COMMENT REJOINDRE', copy_ip: 'COPIER IP', join_tip: 'Java Édition 1.20+ recommandée'
+    },
+    ar: {
+      nav_home: 'الرئيسية', nav_status: 'الحالة', nav_store: 'المتجر', nav_join: 'الدخول', nav_discord: 'ديسكورد',
+      title: 'سيرفر ماينكرافت', subtitle: 'سيرفايفل • بي في بي • اقتصاد', play_now: 'العب الآن',
+      how_join: 'طريقة الدخول', copy_ip: 'نسخ الآي بي', join_tip: 'إصدار جافا 1.20+ موصى به'
+    }
+  };
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = translations[lang][el.dataset.i18n];
+    });
+    document.getElementById('langBtn').textContent = '🌐 ' + lang.toUpperCase();
+  });
+  }
+
+  const savedLang = localStorage.getItem('lang') || 'en';
+  setLang(savedLang);
+
+  function cycleLang() {
+    const order = ['en','fr','ar'];
+    const current = localStorage.getItem('lang') || 'en';
+    const next = order[(order.indexOf(current) + 1) % order.length];
+    setLang(next);
+  }
+
   function playClick() {
-    const s = document.getElementById('clickSound'); s.currentTime = 0; s.play();
+    const s = document.getElementById('clickSound');
+    s.currentTime = 0; s.play();
   }
 
   function toggleTheme() {
@@ -253,7 +339,9 @@
   if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
 
   function copyIP() {
-    navigator.clipboard.writeText(SERVER_IP);
+    const ip = document.getElementById('ipInput');
+    ip.select();
+    document.execCommand('copy');
     alert('Server IP copied!');
   }
 
@@ -268,60 +356,19 @@
           players.textContent = `${d.players.online}/${d.players.max}`;
           version.textContent = d.version.name_clean;
           motd.textContent = d.motd.clean;
-
           if (d.players.list && d.players.list.length > 0) {
             playerList.innerHTML = d.players.list.map(p => `• ${p}`).join('<br>');
-          } else {
-            playerList.textContent = 'No players online';
-          }
+          } else playerList.textContent = 'No players online';
         } else {
           dot.classList.add('offline');
           statusText.textContent = 'OFFLINE';
-          players.textContent = '-';
-          version.textContent = '-';
-          motd.textContent = 'Server is currently offline';
           playerList.textContent = 'Server offline';
         }
-      })
-      .catch(() => {
-        statusText.textContent = 'ERROR';
       });
-  }`)
-      .then(r => r.json())
-      .then(d => {
-        dot.className = 'dot';
-        if (d.online) {
-          dot.classList.add('online');
-          statusText.textContent = 'ONLINE';
-          players.textContent = `${d.players.online}/${d.players.max}`;
-          version.textContent = d.version.name_clean;
-          motd.textContent = d.motd.clean;
-        } else {
-          dot.classList.add('offline');
-          statusText.textContent = 'OFFLINE';
-          players.textContent = '-';
-          version.textContent = '-';
-          motd.textContent = 'Server is currently offline';
-        }
-      })
-      .catch(() => {
-        statusText.textContent = 'ERROR';
-      });
-  }`).then(r=>r.json()).then(d=>{
-      dot.className='dot';
-      if(d.online){dot.classList.add('online');statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version;motd.textContent=d.motd.clean.join('\n');}
-      else{dot.classList.add('offline');statusText.textContent='OFFLINE';}
-    });
   }
-  updateStatus(); setInterval(updateStatus,15000);
 
-  /* RATING (LOCAL ONLY) */
-  const stars=document.querySelectorAll('.star');
-  const saved=localStorage.getItem('rating');
-  function paint(r){stars.forEach(s=>s.classList.toggle('active',s.dataset.rate<=r));}
-  if(saved) paint(saved);
-  stars.forEach(s=>s.onclick=()=>{localStorage.setItem('rating',s.dataset.rate);paint(s.dataset.rate);});
+  updateStatus();
+  setInterval(updateStatus, 15000);
 </script>
-
 </body>
 </html>
