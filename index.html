@@ -4,167 +4,202 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minecraft Server | Official Website</title>
-  <meta name="description" content="Official Minecraft server website – join, play, and explore." />
 
   <!-- Minecraft Font -->
   <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #0f172a;
+      --card: #020617;
+      --text: #e5e7eb;
+      --accent: #22c55e;
+    }
+
+    body.light {
+      --bg: #e5e7eb;
+      --card: #ffffff;
+      --text: #020617;
+      --accent: #16a34a;
     }
 
     body {
       margin: 0;
       font-family: 'Minecraftia', Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .3s, color .3s;
     }
 
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #020617;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--card);
+      display: flex; justify-content: space-between; align-items: center;
       padding: 15px 30px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     }
-    nav .logo {
-      font-size: 1.1rem;
-      color: #22c55e;
-    }
-    nav a {
-      color: #e5e7eb;
-      text-decoration: none;
+
+    nav .logo { color: var(--accent); }
+
+    nav a, nav button {
+      color: var(--text);
       margin-left: 20px;
+      background: none;
+      border: none;
+      font-family: inherit;
       font-size: 0.75rem;
       cursor: pointer;
     }
-    nav a:hover {
-      color: #22c55e;
-    }
+
+    nav a:hover, nav button:hover { color: var(--accent); }
 
     header {
-      background: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.9)),
-        url('https://images.unsplash.com/photo-1620662736427-b8a198f52a4f') center/cover;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.2rem;
-      text-shadow: 4px 4px #000;
+      background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.9)),
+      url('https://images.unsplash.com/photo-1620662736427-b8a198f52a4f') center/cover;
+      padding: 100px 20px; text-align: center;
     }
 
     .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 12px 28px;
-      background: #22c55e;
+      background: var(--accent);
       color: #020617;
-      text-decoration: none;
+      padding: 12px 28px;
       border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
       font-size: 0.75rem;
       cursor: pointer;
     }
 
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 70px 20px;
+    section { max-width: 1100px; margin: auto; padding: 70px 20px; }
+    .card { background: var(--card); padding: 25px; border-radius: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: gray; display: inline-block; }
+    .online { background: #22c55e; }
+    .offline { background: #ef4444; }
+
+    .ip-box {
+      display: flex; gap: 10px; align-items: center;
+      background: var(--bg); padding: 10px; border-radius: 8px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    input {
+      flex: 1; padding: 10px; border-radius: 6px; border: none;
+      font-family: inherit; font-size: 0.75rem;
     }
 
-    .card {
-      background: #020617;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    footer {
-      background: #020617;
-      text-align: center;
-      padding: 30px;
-      font-size: 0.7rem;
-      color: #94a3b8;
-    }
+    footer { background: var(--card); text-align: center; padding: 30px; font-size: 0.7rem; }
   </style>
 </head>
 <body>
 
-<!-- CLICK SOUND -->
 <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 
 <nav>
   <div class="logo">⛏ MY MINECRAFT SERVER</div>
   <div>
     <a onclick="playClick()" href="#home">HOME</a>
-    <a onclick="playClick()" href="#features">FEATURES</a>
+    <a onclick="playClick()" href="#status">STATUS</a>
+    <a onclick="playClick()" href="#store">STORE</a>
     <a onclick="playClick()" href="#join">JOIN</a>
     <a onclick="playClick()" href="#discord">DISCORD</a>
-    <a onclick="playClick()" href="#rules">RULES</a>
+    <button onclick="toggleTheme(); playClick();">☀ / 🌙</button>
   </div>
 </nav>
 
 <header id="home">
   <h1>MY MINECRAFT SERVER</h1>
-  <p>SURVIVAL • PVP • ECONOMY • EVENTS</p>
+  <p>SURVIVAL • PVP • ECONOMY</p>
   <a class="btn" onclick="playClick()" href="#join">PLAY NOW</a>
 </header>
 
-<section id="features">
-  <h2>WHY PLAY WITH US?</h2>
+<section id="status">
+  <h2>SERVER STATUS</h2>
+  <div class="card">
+    <p><span id="dot" class="dot"></span> <strong id="statusText">Loading...</strong></p>
+    <p>Players: <span id="players">-</span></p>
+    <p>Version: <span id="version">-</span></p>
+    <p>MOTD:</p>
+    <pre id="motd">Loading...</pre>
+    <small>Auto refresh every 15 seconds</small>
+  </div>
+</section>
+
+<section id="store">
+  <h2>STORE – RANKS</h2>
   <div class="grid">
-    <div class="card">⚔ CUSTOM GAMEPLAY</div>
-    <div class="card">🌍 ACTIVE COMMUNITY</div>
-    <div class="card">🚀 LAG FREE</div>
+    <div class="card"><h3>VIP</h3><p>$5</p><a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a></div>
+    <div class="card"><h3>MVP</h3><p>$10</p><a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a></div>
+    <div class="card"><h3>LEGEND</h3><p>$20</p><a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a></div>
   </div>
 </section>
 
 <section id="join">
   <h2>HOW TO JOIN</h2>
-  <div class="card">
-    <p>SERVER IP: <strong>SuperGara.aternos.me</strong></p>
-    <p>VERSION: 1.20+</p>
+  <div class="card ip-box">
+    <input id="ipInput" value="SuperGara.aternos.me" readonly>
+    <button class="btn" onclick="copyIP(); playClick();">COPY IP</button>
   </div>
 </section>
 
 <section id="discord">
-  <h2>JOIN OUR DISCORD</h2>
+  <h2>PAYMENTS & SUPPORT</h2>
   <div class="card">
-    <a class="btn" onclick="playClick()" href="https://discord.gg/BRECMFS9ED" target="_blank">JOIN DISCORD</a>
+    <a class="btn" onclick="playClick()" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
   </div>
 </section>
 
-<section id="rules">
-  <h2>SERVER RULES</h2>
-  <div class="card">
-    <ul>
-      <li>No cheating</li>
-      <li>Be respectful</li>
-      <li>No griefing</li>
-    </ul>
-  </div>
-</section>
-
-<footer>
-  © 2026 MY MINECRAFT SERVER
-</footer>
+<footer>© 2026 MY MINECRAFT SERVER</footer>
 
 <script>
+  const SERVER_IP = 'SuperGara.aternos.me'; // CHANGE THIS
+
   function playClick() {
-    const sound = document.getElementById('clickSound');
-    sound.currentTime = 0;
-    sound.play();
+    const s = document.getElementById('clickSound');
+    s.currentTime = 0; s.play();
   }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  }
+
+  // LOAD SAVED THEME
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+  }
+
+  function copyIP() {
+    const ip = document.getElementById('ipInput');
+    ip.select();
+    document.execCommand('copy');
+    alert('Server IP copied!');
+  }
+
+  function updateStatus() {
+    fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`)
+      .then(r => r.json())
+      .then(d => {
+        const dot = document.getElementById('dot');
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version;
+          motd.textContent = d.motd.clean.join('\n');
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          motd.textContent = 'Server offline';
+        }
+      });
+  }
+
+  updateStatus();
+  setInterval(updateStatus, 15000);
 </script>
 
 </body>
