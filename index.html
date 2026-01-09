@@ -186,14 +186,51 @@
 <section id="join">
   <h2 data-i18n="join">HOW TO JOIN</h2>
   <div class="grid">
-    <div class="card"><ol><li>Open Minecraft Java</li><li>Multiplayer</li><li>Add Server</li><li>Paste IP</li></ol></div>
-    <div class="card"><input value="Strong-Valerry.aternos.me" readonly><br><a class="btn" onclick="copyIP()">COPY IP</a></div>
+
+    <div class="card">
+      <h3>Java Edition</h3>
+      <ol>
+        <li>Open <strong>Minecraft Java</strong></li>
+        <li>Click <strong>Multiplayer</strong></li>
+        <li>Select <strong>Add Server</strong></li>
+        <li>Paste the IP address</li>
+        <li>Click <strong>Join Server</strong></li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h3>Server Address</h3>
+      <p>Copy & paste this IP into Minecraft:</p>
+      <input id="ipInput" value="Strong-Valerry.aternos.me" readonly style="width:100%;padding:10px;border-radius:10px;border:none;font-family:inherit">
+      <a class="btn" style="margin-top:15px" onclick="copyIP()">COPY IP</a>
+      <p style="opacity:.6;margin-top:10px">Version: Java • Latest</p>
+    </div>
+
   </div>
 </section>
 
 <section id="discord">
   <h2>DISCORD</h2>
-  <a class="btn" href="https://discord.gg/VcNqSgA8q6">JOIN DISCORD</a>
+  <p style="text-align:center;opacity:.7">Join our community, get support, and buy ranks safely</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Join our Discord</h3>
+      <p>• Server news & updates<br>• Support & tickets<br>• Rank purchases</p>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
+    </div>
+
+    <div class="card" style="padding:0;overflow:hidden">
+      <iframe 
+        src="https://discord.gg/VcNqSgA8q6" 
+        width="100%" 
+        height="350" 
+        allowtransparency="true" 
+        frameborder="0" 
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
+  </div>
 </section>
 
 <footer>© 2026 Strong Valerry</footer>
