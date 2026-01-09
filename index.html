@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strong Valerry | Minecraft Server</title>
 
-  <!-- Minecraft Font -->
   <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 
   <style>
@@ -38,21 +37,50 @@
       background: var(--card);
       display: flex; justify-content: space-between; align-items: center;
       padding: 15px 30px;
-      transition: transform .3s ease;
+    }
+
+    nav a, nav button {
+      color: var(--text);
+      margin-left: 15px;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    header {
+      padding: 120px 20px;
+      text-align: center;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    h1, h2 { text-align: center; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
     }
 
     .card {
       background: var(--card);
-      padding: 25px;
-      border-radius: 14px;
+      padding: 28px;
+      border-radius: 18px;
       position: relative;
-      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,.35);
       transition: transform .3s ease, box-shadow .3s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,0,0,.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(0,0,0,.5);
     }
 
     .shine::before {
@@ -63,13 +91,9 @@
       transform: translateX(-100%);
     }
 
-    .card:hover .shine::before {
-      animation: shine 1.2s forwards;
-    }
+    .card:hover.shine::before { animation: shine 1.2s forwards; }
 
-    @keyframes shine {
-      to { transform: translateX(100%); }
-    }
+    @keyframes shine { to { transform: translateX(100%); } }
 
     .badge {
       position: absolute;
@@ -82,11 +106,30 @@
       transform: rotate(45deg);
       font-weight: bold;
     }
-</style>
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .dot { width:10px;height:10px;border-radius:50%;display:inline-block; }
+    .online { background:#22c55e; }
+    .offline { background:#ef4444; }
+
+    footer {
+      text-align:center;
+      padding:40px;
+      opacity:.7;
+    }
+  </style>
 </head>
 <body>
-
-<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 
 <nav>
   <div>⛏ STRONG VALERRY</div>
@@ -115,172 +158,57 @@
     <p><strong>Version</strong>: <span id="version">-</span></p>
     <pre id="motd">Loading...</pre>
   </div>
-  
-  <div style="margin-top:50px">
-    <h3 style="text-align:center">EXTRA ITEMS</h3>
-    <div class="grid" style="margin-top:20px">
-
-      <div class="card">
-        <h3>🗝️ Vote Key</h3>
-        <p style="opacity:.7">Use in /warp crates</p>
-        <ul style="text-align:left;opacity:.85">
-          <li>✔ Money rewards</li>
-          <li>✔ Rare items</li>
-          <li>✔ Small chance of ranks</li>
-        </ul>
-        <strong>$2</strong><br>
-        <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY KEY</a>
-      </div>
-
-      <div class="card">
-        <h3>🔑 Epic Key</h3>
-        <p style="opacity:.7">Better rewards</p>
-        <ul style="text-align:left;opacity:.85">
-          <li>✔ High money</li>
-          <li>✔ Enchanted gear</li>
-          <li>✔ Rank upgrades</li>
-        </ul>
-        <strong>$5</strong><br>
-        <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY KEY</a>
-      </div>
-
-      <div class="card shine">
-        <h3>📦 Legendary Crate</h3>
-        <p style="font-size:.65rem;opacity:.8">Hover to preview opening ✨</p>
-        <p style="opacity:.7">Best crate</p>
-        <ul style="text-align:left;opacity:.85">
-          <li>✔ OP items</li>
-          <li>✔ Cosmetics</li>
-          <li>✔ Guaranteed rewards</li>
-        </ul>
-        <strong>$10</strong><br>
-        <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY CRATE</a>
-      </div>
-
-    </div>
-  </div>
 </section>
 
 <section id="store">
-  <h2 data-i18n="store">STORE – RANKS</h2>
+  <h2>STORE – RANKS</h2>
   <div class="grid">
-
     <div class="card" style="border:2px solid #22c55e">
-      <h3>VIP</h3>
-      <p style="opacity:.7">Perfect for starters</p>
-      <ul style="text-align:left;opacity:.85">
-        <li>✔ VIP chat prefix</li>
-        <li>✔ /kit vip</li>
-        <li>✔ 2 Homes</li>
-      </ul>
-      <strong>$5</strong><br>
-      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY VIP</a>
+      <h3>VIP</h3><ul><li>VIP prefix</li><li>/kit vip</li><li>2 homes</li></ul><strong>$5</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a>
     </div>
-
     <div class="card shine" style="border:2px solid gold">
-      <div class="badge">BEST SELLER</div>
-      <h3>MVP</h3>
-      <p style="opacity:.7">Best value</p>
-      <ul style="text-align:left;opacity:.85">
-        <li>✔ All VIP perks</li>
-        <li>✔ /fly</li>
-        <li>✔ 5 Homes</li>
-      </ul>
-      <strong>$10</strong><br>
-      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY MVP</a>
+      <div class="badge">BEST</div>
+      <h3>MVP</h3><ul><li>All VIP</li><li>/fly</li><li>5 homes</li></ul><strong>$10</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a>
     </div>
-
     <div class="card" style="border:2px solid #ef4444">
-      <h3>LEGEND</h3>
-      <p style="opacity:.7">Ultimate rank</p>
-      <ul style="text-align:left;opacity:.85">
-        <li>✔ All perks</li>
-        <li>✔ /god</li>
-        <li>✔ Unlimited homes</li>
-      </ul>
-      <strong>$20</strong><br>
-      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY LEGEND</a>
+      <h3>LEGEND</h3><ul><li>All perks</li><li>/god</li><li>Unlimited homes</li></ul><strong>$20</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a>
     </div>
+  </div>
 
+  <h2 style="margin-top:80px">EXTRA ITEMS</h2>
+  <div class="grid">
+    <div class="card"><h3>🗝 Vote Key</h3><strong>$2</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a></div>
+    <div class="card"><h3>🔑 Epic Key</h3><strong>$5</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a></div>
+    <div class="card shine"><h3>📦 Legendary Crate</h3><strong>$10</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a></div>
   </div>
 </section>
 
 <section id="join">
   <h2 data-i18n="join">HOW TO JOIN</h2>
   <div class="grid">
-    <div class="card">
-      <ol>
-        <li>Open Minecraft Java</li>
-        <li>Click Multiplayer</li>
-        <li>Add Server</li>
-        <li>Paste IP</li>
-      </ol>
-    </div>
-    <div class="card">
-      <div class="ip-box">
-        <input id="ipInput" value="Strong-Valerry.aternos.me" readonly>
-        <button class="btn" onclick="copyIP()">COPY IP</button>
-      </div>
-    </div>
+    <div class="card"><ol><li>Open Minecraft Java</li><li>Multiplayer</li><li>Add Server</li><li>Paste IP</li></ol></div>
+    <div class="card"><input value="Strong-Valerry.aternos.me" readonly><br><a class="btn" onclick="copyIP()">COPY IP</a></div>
   </div>
 </section>
 
 <section id="discord">
   <h2>DISCORD</h2>
-  <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
+  <a class="btn" href="https://discord.gg/VcNqSgA8q6">JOIN DISCORD</a>
 </section>
 
 <footer>© 2026 Strong Valerry</footer>
 
 <script>
-  const SERVER_IP = 'Strong-Valerry.aternos.me';
-
-  const translations = {
-    en: { title:'STRONG VALERRY', subtitle:'SURVIVAL • PVP • ECONOMY', play:'PLAY NOW', join:'HOW TO JOIN', store:'STORE', status:'SERVER STATUS', players:'Players' },
-    fr: { title:'STRONG VALERRY', subtitle:'SURVIE • PVP • ÉCONOMIE', play:'JOUER', join:'COMMENT REJOINDRE', store:'BOUTIQUE', status:'STATUT DU SERVEUR', players:'Joueurs' },
-    ar: { title:'سترونغ فاليري', subtitle:'سيرفايفل • بي في بي • اقتصاد', play:'العب الآن', join:'طريقة الدخول', store:'المتجر', status:'حالة السيرفر', players:'اللاعبون' }
-  };
-
-  function cycleLang() {
-    const langs = ['en','fr','ar'];
-    const cur = localStorage.getItem('lang') || 'en';
-    const next = langs[(langs.indexOf(cur)+1)%langs.length];
-    setLang(next);
-  }
-
-  function setLang(lang) {
-    localStorage.setItem('lang', lang);
-    document.documentElement.dir = lang==='ar'?'rtl':'ltr';
-    document.getElementById('langBtn').textContent = '🌐 '+lang.toUpperCase();
-    document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=translations[lang][e.dataset.i18n]);
-  }
-
-  setLang(localStorage.getItem('lang')||'en');
-
-  function toggleTheme() {
-    document.body.classList.toggle('light');
-  }
-
-  function copyIP() {
-    const i=document.getElementById('ipInput');i.select();document.execCommand('copy');alert('IP Copied');
-  }
-
-  function updateStatus() {
-    fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`,{cache:'no-store'})
-      .then(r=>r.json())
-      .then(d=>{
-        if(d.online){
-          dot.className='dot online';statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version.name_clean;motd.textContent=d.motd.clean;
-        }else{
-          dot.className='dot offline';statusText.textContent='OFFLINE';players.textContent='-';version.textContent='-';motd.textContent='Server offline';
-        }
-      });
-  }
-
-  updateStatus();
-  setInterval(updateStatus,10000);
+const SERVER_IP='Strong-Valerry.aternos.me';
+const translations={en:{title:'STRONG VALERRY',subtitle:'SURVIVAL • PVP • ECONOMY',play:'PLAY NOW',join:'HOW TO JOIN',status:'SERVER STATUS',players:'Players'},fr:{title:'STRONG VALERRY',subtitle:'SURVIE • PVP • ÉCONOMIE',play:'JOUER',join:'COMMENT REJOINDRE',status:'STATUT',players:'Joueurs'},ar:{title:'سترونغ فاليري',subtitle:'سيرفايفل • بي في بي • اقتصاد',play:'العب الآن',join:'طريقة الدخول',status:'حالة السيرفر',players:'اللاعبون'}};
+function cycleLang(){const l=['en','fr','ar'];const c=localStorage.getItem('lang')||'en';setLang(l[(l.indexOf(c)+1)%3]);}
+function setLang(l){localStorage.setItem('lang',l);document.documentElement.dir=l==='ar'?'rtl':'ltr';langBtn.textContent='🌐 '+l.toUpperCase();document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=translations[l][e.dataset.i18n]);}
+setLang(localStorage.getItem('lang')||'en');
+function toggleTheme(){document.body.classList.toggle('light');}
+function copyIP(){navigator.clipboard.writeText(SERVER_IP);alert('IP Copied');}
+function updateStatus(){fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`,{cache:'no-store'}).then(r=>r.json()).then(d=>{if(d.online){dot.className='dot online';statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version.name_clean;motd.textContent=d.motd.clean;}else{dot.className='dot offline';statusText.textContent='OFFLINE';}});}
+updateStatus();setInterval(updateStatus,10000);
 </script>
 
 </body>
 </html>
-
