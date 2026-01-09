@@ -152,26 +152,532 @@
 <section id="status">
   <h2>SERVER STATUS</h2>
   <div class="card">
-    <p><span id="dot" class="dot"></span> <strong id="statusText">Loading...</strong></p>
-    <p>Players: <span id="players">-</span></p>
-    <p>Version: <span id="version">-</span></p>
-    <pre id="motd">Loading...</pre>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span id="dot" class="dot"></span>
+      <strong id="statusText">Checking...</strong>
+    </div>
+
+    <div style="margin-top:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;">
+      <div><small>PLAYERS</small><br><strong id="players">-</strong></div>
+      <div><small>VERSION</small><br><strong id="version">-</strong></div>
+      <div><small>HOST</small><br><strong>Aternos</strong></div>
+    </div>
+
+    <pre id="motd" style="margin-top:15px;opacity:.8">Loading MOTD...</pre>
+
+    <a class="btn" style="margin-top:15px" href="https://aternos.org/server/" target="_blank">▶ START SERVER (Aternos)</a>
+
+    <div style="margin-top:25px">
+      <h3 style="font-size:.9rem">ONLINE PLAYERS</h3>
+      <div id="playerList" style="opacity:.8">No players online</div>
+    </div>
+
+    <small style="opacity:.6">Updates every 15 seconds</small>
   </div>
 </section>
 
 <section id="store">
   <h2>STORE – RANKS</h2>
   <div class="grid">
-    <div class="card"><h3>VIP</h3><p>$5</p><a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a></div>
-    <div class="card"><h3>MVP</h3><p>$10</p><a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a></div>
-    <div class="card"><h3>LEGEND</h3><p>$20</p><a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a></div>
+    <div class="card" style="border:2px solid #22c55e">
+      <h3>VIP</h3>
+      <ul>
+        <li>✔ /fly</li>
+        <li>✔ VIP Kit</li>
+        <li>✔ Colored chat</li>
+      </ul>
+      <strong>$5</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY VIP</a>
+    </div>
+
+    <div class="card" style="border:2px solid gold">
+      <h3>MVP</h3>
+      <ul>
+        <li>✔ All VIP perks</li>
+        <li>✔ /heal</li>
+        <li>✔ Extra homes</li>
+      </ul>
+      <strong>$10</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY MVP</a>
+    </div>
+
+    <div class="card" style="border:2px solid #ef4444">
+      <h3>LEGEND</h3>
+      <ul>
+        <li>✔ All perks</li>
+        <li>✔ /god</li>
+        <li>✔ Priority support</li>
+      </ul>
+      <strong>$20</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY LEGEND</a>
+    </div>
   </div>
 </section>
 
 <section id="join">
   <h2>HOW TO JOIN</h2>
   <div class="card ip-box">
-    <div class="ip-value" id="ipText">  Strong-Valerry.aternos.me</div>
+    <div class="ip-value" id="ipText"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Server | Official Website</title>
+
+  <!-- Minecraft Font -->
+  <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #0f172a;
+      --card: #020617;
+      --text: #e5e7eb;
+      --accent: #22c55e;
+    }
+
+    body.light {
+      --bg: #e5e7eb;
+      --card: #ffffff;
+      --text: #020617;
+      --accent: #16a34a;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Minecraftia', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .3s, color .3s;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--card);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px;
+    }
+
+    nav .logo { color: var(--accent); }
+
+    nav a, nav button {
+      color: var(--text);
+      margin-left: 20px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    nav a:hover, nav button:hover { color: var(--accent); }
+
+    header {
+      background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.9)),
+      url('https://images.unsplash.com/photo-1620662736427-b8a198f52a4f') center/cover;
+      padding: 100px 20px; text-align: center;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #020617;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    section { max-width: 1100px; margin: auto; padding: 70px 20px; }
+    .card { background: var(--card); padding: 25px; border-radius: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: gray; display: inline-block; }
+    .online { background: #22c55e; }
+    .offline { background: #ef4444; }
+
+    .ip-box {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      background: linear-gradient(145deg, rgba(34,197,94,0.15), var(--card));
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 0 2px rgba(34,197,94,0.3);
+    }
+
+    .ip-value {
+      background: var(--bg);
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: 2px dashed var(--accent);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      user-select: all;
+    }
+
+    footer { background: var(--card); text-align: center; padding: 30px; font-size: 0.7rem; }
+
+    /* MUSIC BANNER */
+    #musicBanner {
+      position: fixed;
+      bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--card);
+      border: 2px solid var(--accent);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      z-index: 2000;
+      cursor: pointer;
+    }
+
+    /* RATING */
+    .stars { display: flex; justify-content: center; gap: 10px; font-size: 1.4rem; cursor: pointer; }
+    .star { color: gray; transition: transform .2s, color .2s; }
+    .star.active { color: gold; transform: scale(1.2); }
+  </style>
+</head>
+<body>
+
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+<audio id="bgMusic" preload="auto"></audio>
+
+<div id="musicBanner" onclick="enableMusic()">🎵 Click to enable Minecraft music</div>
+
+<nav>
+  <div class="logo">⛏ MY MINECRAFT SERVER</div>
+  <div>
+    <a onclick="playClick()" href="#home">HOME</a>
+    <a onclick="playClick()" href="#status">STATUS</a>
+    <a onclick="playClick()" href="#store">STORE</a>
+    <a onclick="playClick()" href="#join">JOIN</a>
+    <a onclick="playClick()" href="#discord">DISCORD</a>
+    <button onclick="toggleTheme(); playClick();">☀ / 🌙</button>
+    <button onclick="toggleMusic(); playClick();">🎵 MUSIC</button>
+  </div>
+</nav>
+
+<header id="home">
+  <h1>MY MINECRAFT SERVER</h1>
+  <p>SURVIVAL • PVP • ECONOMY</p>
+  <a class="btn" onclick="playClick()" href="#join">PLAY NOW</a>
+</header>
+
+<section id="status">
+  <h2>SERVER STATUS</h2>
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span id="dot" class="dot"></span>
+      <strong id="statusText">Checking...</strong>
+    </div>
+
+    <div style="margin-top:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;">
+      <div><small>PLAYERS</small><br><strong id="players">-</strong></div>
+      <div><small>VERSION</small><br><strong id="version">-</strong></div>
+      <div><small>HOST</small><br><strong>Aternos</strong></div>
+    </div>
+
+    <pre id="motd" style="margin-top:15px;opacity:.8">Loading MOTD...</pre>
+
+    <a class="btn" style="margin-top:15px" href="https://aternos.org/server/" target="_blank">▶ START SERVER (Aternos)</a>
+
+    <div style="margin-top:25px">
+      <h3 style="font-size:.9rem">ONLINE PLAYERS</h3>
+      <div id="playerList" style="opacity:.8">No players online</div>
+    </div>
+
+    <small style="opacity:.6">Updates every 15 seconds</small>
+  </div>
+</section>
+
+<section id="store">
+  <h2>STORE – RANKS</h2>
+  <div class="grid">
+    <div class="card" style="border:2px solid #22c55e">
+      <h3>VIP</h3>
+      <ul>
+        <li>✔ /fly</li>
+        <li>✔ VIP Kit</li>
+        <li>✔ Colored chat</li>
+      </ul>
+      <strong>$5</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY VIP</a>
+    </div>
+
+    <div class="card" style="border:2px solid gold">
+      <h3>MVP</h3>
+      <ul>
+        <li>✔ All VIP perks</li>
+        <li>✔ /heal</li>
+        <li>✔ Extra homes</li>
+      </ul>
+      <strong>$10</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY MVP</a>
+    </div>
+
+    <div class="card" style="border:2px solid #ef4444">
+      <h3>LEGEND</h3>
+      <ul>
+        <li>✔ All perks</li>
+        <li>✔ /god</li>
+        <li>✔ Priority support</li>
+      </ul>
+      <strong>$20</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY LEGEND</a>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <h2>HOW TO JOIN</h2>
+  <div class="card ip-box">
+    <div class="ip-value" id="ipText">SuperGara.aternos.me</div>
+    <button class="btn" onclick="copyIP(); playClick();">COPY IP</button>
+  </div>
+</section>
+
+<section id="rating">
+  <h2>RATE OUR WEBSITE</h2>
+  <div class="card">
+    <div class="stars" id="stars">
+      <span class="star" data-rate="1">★</span>
+      <span class="star" data-rate="2">★</span>
+      <span class="star" data-rate="3">★</span>
+      <span class="star" data-rate="4">★</span>
+      <span class="star" data-rate="5">★</span>
+    </div>
+    <small>Rating is saved locally (GitHub Pages cannot store global ratings)</small>
+  </div>
+</section>
+
+<footer>© 2026 MY MINECRAFT SERVER</footer>
+
+<script>
+  const SERVER_IP = '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Server | Official Website</title>
+
+  <!-- Minecraft Font -->
+  <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #0f172a;
+      --card: #020617;
+      --text: #e5e7eb;
+      --accent: #22c55e;
+    }
+
+    body.light {
+      --bg: #e5e7eb;
+      --card: #ffffff;
+      --text: #020617;
+      --accent: #16a34a;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Minecraftia', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .3s, color .3s;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--card);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px;
+    }
+
+    nav .logo { color: var(--accent); }
+
+    nav a, nav button {
+      color: var(--text);
+      margin-left: 20px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    nav a:hover, nav button:hover { color: var(--accent); }
+
+    header {
+      background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.9)),
+      url('https://images.unsplash.com/photo-1620662736427-b8a198f52a4f') center/cover;
+      padding: 100px 20px; text-align: center;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #020617;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    section { max-width: 1100px; margin: auto; padding: 70px 20px; }
+    .card { background: var(--card); padding: 25px; border-radius: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: gray; display: inline-block; }
+    .online { background: #22c55e; }
+    .offline { background: #ef4444; }
+
+    .ip-box {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      background: linear-gradient(145deg, rgba(34,197,94,0.15), var(--card));
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 0 2px rgba(34,197,94,0.3);
+    }
+
+    .ip-value {
+      background: var(--bg);
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: 2px dashed var(--accent);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      user-select: all;
+    }
+
+    footer { background: var(--card); text-align: center; padding: 30px; font-size: 0.7rem; }
+
+    /* MUSIC BANNER */
+    #musicBanner {
+      position: fixed;
+      bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--card);
+      border: 2px solid var(--accent);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      z-index: 2000;
+      cursor: pointer;
+    }
+
+    /* RATING */
+    .stars { display: flex; justify-content: center; gap: 10px; font-size: 1.4rem; cursor: pointer; }
+    .star { color: gray; transition: transform .2s, color .2s; }
+    .star.active { color: gold; transform: scale(1.2); }
+  </style>
+</head>
+<body>
+
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+<audio id="bgMusic" preload="auto"></audio>
+
+<div id="musicBanner" onclick="enableMusic()">🎵 Click to enable Minecraft music</div>
+
+<nav>
+  <div class="logo">⛏ MY MINECRAFT SERVER</div>
+  <div>
+    <a onclick="playClick()" href="#home">HOME</a>
+    <a onclick="playClick()" href="#status">STATUS</a>
+    <a onclick="playClick()" href="#store">STORE</a>
+    <a onclick="playClick()" href="#join">JOIN</a>
+    <a onclick="playClick()" href="#discord">DISCORD</a>
+    <button onclick="toggleTheme(); playClick();">☀ / 🌙</button>
+    <button onclick="toggleMusic(); playClick();">🎵 MUSIC</button>
+  </div>
+</nav>
+
+<header id="home">
+  <h1>MY MINECRAFT SERVER</h1>
+  <p>SURVIVAL • PVP • ECONOMY</p>
+  <a class="btn" onclick="playClick()" href="#join">PLAY NOW</a>
+</header>
+
+<section id="status">
+  <h2>SERVER STATUS</h2>
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span id="dot" class="dot"></span>
+      <strong id="statusText">Checking...</strong>
+    </div>
+
+    <div style="margin-top:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;">
+      <div><small>PLAYERS</small><br><strong id="players">-</strong></div>
+      <div><small>VERSION</small><br><strong id="version">-</strong></div>
+      <div><small>HOST</small><br><strong>Aternos</strong></div>
+    </div>
+
+    <pre id="motd" style="margin-top:15px;opacity:.8">Loading MOTD...</pre>
+
+    <a class="btn" style="margin-top:15px" href="https://aternos.org/server/" target="_blank">▶ START SERVER (Aternos)</a>
+
+    <div style="margin-top:25px">
+      <h3 style="font-size:.9rem">ONLINE PLAYERS</h3>
+      <div id="playerList" style="opacity:.8">No players online</div>
+    </div>
+
+    <small style="opacity:.6">Updates every 15 seconds</small>
+  </div>
+</section>
+
+<section id="store">
+  <h2>STORE – RANKS</h2>
+  <div class="grid">
+    <div class="card" style="border:2px solid #22c55e">
+      <h3>VIP</h3>
+      <ul>
+        <li>✔ /fly</li>
+        <li>✔ VIP Kit</li>
+        <li>✔ Colored chat</li>
+      </ul>
+      <strong>$5</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY VIP</a>
+    </div>
+
+    <div class="card" style="border:2px solid gold">
+      <h3>MVP</h3>
+      <ul>
+        <li>✔ All VIP perks</li>
+        <li>✔ /heal</li>
+        <li>✔ Extra homes</li>
+      </ul>
+      <strong>$10</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY MVP</a>
+    </div>
+
+    <div class="card" style="border:2px solid #ef4444">
+      <h3>LEGEND</h3>
+      <ul>
+        <li>✔ All perks</li>
+        <li>✔ /god</li>
+        <li>✔ Priority support</li>
+      </ul>
+      <strong>$20</strong>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY LEGEND</a>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <h2>HOW TO JOIN</h2>
+  <div class="card ip-box">
+    <div class="ip-value" id="ipText">SuperGara.aternos.me</div>
     <button class="btn" onclick="copyIP(); playClick();">COPY IP</button>
   </div>
 </section>
@@ -212,7 +718,56 @@
   }
 
   function updateStatus() {
-    fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`).then(r=>r.json()).then(d=>{
+    fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`)
+      .then(r => r.json())
+      .then(d => {
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version.name_clean;
+          motd.textContent = d.motd.clean;
+
+          if (d.players.list && d.players.list.length > 0) {
+            playerList.innerHTML = d.players.list.map(p => `• ${p}`).join('<br>');
+          } else {
+            playerList.textContent = 'No players online';
+          }
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          players.textContent = '-';
+          version.textContent = '-';
+          motd.textContent = 'Server is currently offline';
+          playerList.textContent = 'Server offline';
+        }
+      })
+      .catch(() => {
+        statusText.textContent = 'ERROR';
+      });
+  }`)
+      .then(r => r.json())
+      .then(d => {
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version.name_clean;
+          motd.textContent = d.motd.clean;
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          players.textContent = '-';
+          version.textContent = '-';
+          motd.textContent = 'Server is currently offline';
+        }
+      })
+      .catch(() => {
+        statusText.textContent = 'ERROR';
+      });
+  }`).then(r=>r.json()).then(d=>{
       dot.className='dot';
       if(d.online){dot.classList.add('online');statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version;motd.textContent=d.motd.clean.join('\n');}
       else{dot.classList.add('offline');statusText.textContent='OFFLINE';}
@@ -250,5 +805,237 @@
 
 </body>
 </html>
+';
 
+  function playClick() {
+    const s = document.getElementById('clickSound'); s.currentTime = 0; s.play();
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  }
+
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+
+  function copyIP() {
+    navigator.clipboard.writeText(SERVER_IP);
+    alert('Server IP copied!');
+  }
+
+  function updateStatus() {
+    fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`)
+      .then(r => r.json())
+      .then(d => {
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version.name_clean;
+          motd.textContent = d.motd.clean;
+
+          if (d.players.list && d.players.list.length > 0) {
+            playerList.innerHTML = d.players.list.map(p => `• ${p}`).join('<br>');
+          } else {
+            playerList.textContent = 'No players online';
+          }
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          players.textContent = '-';
+          version.textContent = '-';
+          motd.textContent = 'Server is currently offline';
+          playerList.textContent = 'Server offline';
+        }
+      })
+      .catch(() => {
+        statusText.textContent = 'ERROR';
+      });
+  }`)
+      .then(r => r.json())
+      .then(d => {
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version.name_clean;
+          motd.textContent = d.motd.clean;
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          players.textContent = '-';
+          version.textContent = '-';
+          motd.textContent = 'Server is currently offline';
+        }
+      })
+      .catch(() => {
+        statusText.textContent = 'ERROR';
+      });
+  }`).then(r=>r.json()).then(d=>{
+      dot.className='dot';
+      if(d.online){dot.classList.add('online');statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version;motd.textContent=d.motd.clean.join('\n');}
+      else{dot.classList.add('offline');statusText.textContent='OFFLINE';}
+    });
+  }
+  updateStatus(); setInterval(updateStatus,15000);
+
+  /* MUSIC SYSTEM */
+  const tracks = [
+    'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/C418/Minecraft_-_Volume_Alpha/C418_-_Minecraft.mp3',
+    'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/C418/Minecraft_-_Volume_Alpha/C418_-_Key.mp3'
+  ];
+  const bg = document.getElementById('bgMusic');
+  let musicOn = false;
+
+  function fadeIn(){bg.volume=0;bg.play();let v=0;const i=setInterval(()=>{v+=0.02;bg.volume=Math.min(v,0.25);if(v>=0.25)clearInterval(i);},100);}  
+  function fadeOut(){let v=bg.volume;const i=setInterval(()=>{v-=0.02;bg.volume=Math.max(v,0);if(v<=0){bg.pause();clearInterval(i);}},100);}  
+
+  function enableMusic(){document.getElementById('musicBanner').style.display='none';toggleMusic();}
+
+  function toggleMusic(){
+    if(!musicOn){bg.src=tracks[Math.floor(Math.random()*tracks.length)];fadeIn();musicOn=true;localStorage.setItem('music','on');}
+    else{fadeOut();musicOn=false;localStorage.setItem('music','off');}
+  }
+
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && musicOn) fadeOut();});
+
+  /* RATING (LOCAL ONLY) */
+  const stars=document.querySelectorAll('.star');
+  const saved=localStorage.getItem('rating');
+  function paint(r){stars.forEach(s=>s.classList.toggle('active',s.dataset.rate<=r));}
+  if(saved) paint(saved);
+  stars.forEach(s=>s.onclick=()=>{localStorage.setItem('rating',s.dataset.rate);paint(s.dataset.rate);});
+</script>
+
+</body>
+</html>
+</div>
+    <button class="btn" onclick="copyIP(); playClick();">COPY IP</button>
+  </div>
+</section>
+
+<section id="rating">
+  <h2>RATE OUR WEBSITE</h2>
+  <div class="card">
+    <div class="stars" id="stars">
+      <span class="star" data-rate="1">★</span>
+      <span class="star" data-rate="2">★</span>
+      <span class="star" data-rate="3">★</span>
+      <span class="star" data-rate="4">★</span>
+      <span class="star" data-rate="5">★</span>
+    </div>
+    <small>Rating is saved locally (GitHub Pages cannot store global ratings)</small>
+  </div>
+</section>
+
+<footer>© 2026 MY MINECRAFT SERVER</footer>
+
+<script>
+  const SERVER_IP = 'Strong-Valerry.aternos.me';
+
+  function playClick() {
+    const s = document.getElementById('clickSound'); s.currentTime = 0; s.play();
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  }
+
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+
+  function copyIP() {
+    navigator.clipboard.writeText(SERVER_IP);
+    alert('Server IP copied!');
+  }
+
+  function updateStatus() {
+    fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`)
+      .then(r => r.json())
+      .then(d => {
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version.name_clean;
+          motd.textContent = d.motd.clean;
+
+          if (d.players.list && d.players.list.length > 0) {
+            playerList.innerHTML = d.players.list.map(p => `• ${p}`).join('<br>');
+          } else {
+            playerList.textContent = 'No players online';
+          }
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          players.textContent = '-';
+          version.textContent = '-';
+          motd.textContent = 'Server is currently offline';
+          playerList.textContent = 'Server offline';
+        }
+      })
+      .catch(() => {
+        statusText.textContent = 'ERROR';
+      });
+  }`)
+      .then(r => r.json())
+      .then(d => {
+        dot.className = 'dot';
+        if (d.online) {
+          dot.classList.add('online');
+          statusText.textContent = 'ONLINE';
+          players.textContent = `${d.players.online}/${d.players.max}`;
+          version.textContent = d.version.name_clean;
+          motd.textContent = d.motd.clean;
+        } else {
+          dot.classList.add('offline');
+          statusText.textContent = 'OFFLINE';
+          players.textContent = '-';
+          version.textContent = '-';
+          motd.textContent = 'Server is currently offline';
+        }
+      })
+      .catch(() => {
+        statusText.textContent = 'ERROR';
+      });
+  }`).then(r=>r.json()).then(d=>{
+      dot.className='dot';
+      if(d.online){dot.classList.add('online');statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version;motd.textContent=d.motd.clean.join('\n');}
+      else{dot.classList.add('offline');statusText.textContent='OFFLINE';}
+    });
+  }
+  updateStatus(); setInterval(updateStatus,15000);
+
+  /* MUSIC SYSTEM */
+  const tracks = [
+    'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/C418/Minecraft_-_Volume_Alpha/C418_-_Minecraft.mp3',
+    'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/C418/Minecraft_-_Volume_Alpha/C418_-_Key.mp3'
+  ];
+  const bg = document.getElementById('bgMusic');
+  let musicOn = false;
+
+  function fadeIn(){bg.volume=0;bg.play();let v=0;const i=setInterval(()=>{v+=0.02;bg.volume=Math.min(v,0.25);if(v>=0.25)clearInterval(i);},100);}  
+  function fadeOut(){let v=bg.volume;const i=setInterval(()=>{v-=0.02;bg.volume=Math.max(v,0);if(v<=0){bg.pause();clearInterval(i);}},100);}  
+
+  function enableMusic(){document.getElementById('musicBanner').style.display='none';toggleMusic();}
+
+  function toggleMusic(){
+    if(!musicOn){bg.src=tracks[Math.floor(Math.random()*tracks.length)];fadeIn();musicOn=true;localStorage.setItem('music','on');}
+    else{fadeOut();musicOn=false;localStorage.setItem('music','off');}
+  }
+
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && musicOn) fadeOut();});
+
+  /* RATING (LOCAL ONLY) */
+  const stars=document.querySelectorAll('.star');
+  const saved=localStorage.getItem('rating');
+  function paint(r){stars.forEach(s=>s.classList.toggle('active',s.dataset.rate<=r));}
+  if(saved) paint(saved);
+  stars.forEach(s=>s.onclick=()=>{localStorage.setItem('rating',s.dataset.rate);paint(s.dataset.rate);});
+</script>
+
+</body>
 </html>
