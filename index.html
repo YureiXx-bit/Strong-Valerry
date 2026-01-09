@@ -30,77 +30,59 @@
       font-family: 'Minecraftia', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
+      transition: background .3s, color .3s;
     }
 
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
       background: var(--card);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 15px 30px;
       transition: transform .3s ease;
     }
 
-    nav a, nav button {
-      color: var(--text);
-      margin-left: 20px;
-      background: none;
-      border: none;
-      font-family: inherit;
-      font-size: 0.75rem;
-      cursor: pointer;
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
     }
 
-    nav a:hover, nav button:hover { color: var(--accent); }
-
-    #langBtn {
-      border: 1px solid var(--accent);
-      border-radius: 6px;
-      padding: 6px 10px;
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,.4);
     }
 
-    header {
-      background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.9)),
-      url('https://images.unsplash.com/photo-1620662736427-b8a198f52a4f') center/cover;
-      padding: 100px 20px;
-      text-align: center;
+    .shine::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.25), transparent 70%);
+      transform: translateX(-100%);
     }
 
-    section { max-width: 1100px; margin: auto; padding: 70px 20px; }
-    .card { background: var(--card); padding: 25px; border-radius: 14px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
-
-    .btn {
-      background: var(--accent);
-      color: #020617;
-      padding: 12px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 15px;
-      font-size: 0.75rem;
-      cursor: pointer;
+    .card:hover .shine::before {
+      animation: shine 1.2s forwards;
     }
 
-    .dot { width: 12px; height: 12px; border-radius: 50%; background: gray; display: inline-block; }
-    .online { background: #22c55e; }
-    .offline { background: #ef4444; }
-
-    .ip-box {
-      display: flex; gap: 10px; align-items: center;
-      background: var(--bg); padding: 10px; border-radius: 8px;
+    @keyframes shine {
+      to { transform: translateX(100%); }
     }
 
-    input {
-      flex: 1; padding: 10px; border-radius: 6px; border: none;
-      font-family: inherit; font-size: 0.75rem;
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: -35px;
+      background: gold;
+      color: #000;
+      padding: 6px 40px;
+      font-size: .6rem;
+      transform: rotate(45deg);
+      font-weight: bold;
     }
-
-    footer { background: var(--card); text-align: center; padding: 30px; font-size: 0.7rem; }
-  </style>
+</style>
 </head>
 <body>
 
@@ -133,14 +115,93 @@
     <p><strong>Version</strong>: <span id="version">-</span></p>
     <pre id="motd">Loading...</pre>
   </div>
+  
+  <div style="margin-top:50px">
+    <h3 style="text-align:center">EXTRA ITEMS</h3>
+    <div class="grid" style="margin-top:20px">
+
+      <div class="card">
+        <h3>🗝️ Vote Key</h3>
+        <p style="opacity:.7">Use in /warp crates</p>
+        <ul style="text-align:left;opacity:.85">
+          <li>✔ Money rewards</li>
+          <li>✔ Rare items</li>
+          <li>✔ Small chance of ranks</li>
+        </ul>
+        <strong>$2</strong><br>
+        <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY KEY</a>
+      </div>
+
+      <div class="card">
+        <h3>🔑 Epic Key</h3>
+        <p style="opacity:.7">Better rewards</p>
+        <ul style="text-align:left;opacity:.85">
+          <li>✔ High money</li>
+          <li>✔ Enchanted gear</li>
+          <li>✔ Rank upgrades</li>
+        </ul>
+        <strong>$5</strong><br>
+        <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY KEY</a>
+      </div>
+
+      <div class="card shine">
+        <h3>📦 Legendary Crate</h3>
+        <p style="font-size:.65rem;opacity:.8">Hover to preview opening ✨</p>
+        <p style="opacity:.7">Best crate</p>
+        <ul style="text-align:left;opacity:.85">
+          <li>✔ OP items</li>
+          <li>✔ Cosmetics</li>
+          <li>✔ Guaranteed rewards</li>
+        </ul>
+        <strong>$10</strong><br>
+        <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY CRATE</a>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <section id="store">
-  <h2 data-i18n="store">STORE</h2>
+  <h2 data-i18n="store">STORE – RANKS</h2>
   <div class="grid">
-    <div class="card"><h3>VIP</h3><p>$5</p></div>
-    <div class="card"><h3>MVP</h3><p>$10</p></div>
-    <div class="card"><h3>LEGEND</h3><p>$20</p></div>
+
+    <div class="card" style="border:2px solid #22c55e">
+      <h3>VIP</h3>
+      <p style="opacity:.7">Perfect for starters</p>
+      <ul style="text-align:left;opacity:.85">
+        <li>✔ VIP chat prefix</li>
+        <li>✔ /kit vip</li>
+        <li>✔ 2 Homes</li>
+      </ul>
+      <strong>$5</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY VIP</a>
+    </div>
+
+    <div class="card shine" style="border:2px solid gold">
+      <div class="badge">BEST SELLER</div>
+      <h3>MVP</h3>
+      <p style="opacity:.7">Best value</p>
+      <ul style="text-align:left;opacity:.85">
+        <li>✔ All VIP perks</li>
+        <li>✔ /fly</li>
+        <li>✔ 5 Homes</li>
+      </ul>
+      <strong>$10</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY MVP</a>
+    </div>
+
+    <div class="card" style="border:2px solid #ef4444">
+      <h3>LEGEND</h3>
+      <p style="opacity:.7">Ultimate rank</p>
+      <ul style="text-align:left;opacity:.85">
+        <li>✔ All perks</li>
+        <li>✔ /god</li>
+        <li>✔ Unlimited homes</li>
+      </ul>
+      <strong>$20</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY LEGEND</a>
+    </div>
+
   </div>
 </section>
 
@@ -222,3 +283,4 @@
 
 </body>
 </html>
+
