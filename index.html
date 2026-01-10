@@ -9,259 +9,307 @@
 
 <style>
 :root{
-  --bg:#0b1220;
+  --bg:#0b1224;
   --card:#0f172a;
   --text:#e5e7eb;
   --accent:#22c55e;
-  --danger:#ef4444;
-  --warn:#facc15;
+  --gold:#facc15;
 }
 
+html{scroll-behavior:smooth;}
 body{
   margin:0;
-  font-family:'Minecraftia', Arial, sans-serif;
+  font-family:'Minecraftia',Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
 
+/* NAV */
 nav{
-  position:sticky;
-  top:0;
-  background:#020617;
-  padding:15px 30px;
+  position:fixed;
+  top:0; width:100%;
+  z-index:1000;
   display:flex;
   justify-content:space-between;
-  z-index:1000;
+  align-items:center;
+  padding:14px 30px;
+  background:rgba(2,6,23,.85);
+  backdrop-filter:blur(10px);
 }
-
 nav a{
   color:var(--text);
   text-decoration:none;
   margin-left:20px;
-  font-size:.7rem;
+  font-size:.75rem;
 }
+nav a:hover{color:var(--accent);}
 
-header{
+/* HERO */
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+.hero video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.6),var(--bg));
+}
+.hero-content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   text-align:center;
-  padding:120px 20px;
+  z-index:2;
 }
-
+.hero h1{font-size:3rem;}
+.hero p{opacity:.8;}
 .btn{
+  margin-top:20px;
+  padding:12px 26px;
   background:var(--accent);
   color:#000;
-  padding:10px 20px;
-  border-radius:6px;
+  border-radius:12px;
+  font-weight:bold;
   text-decoration:none;
-  font-size:.7rem;
-  display:inline-block;
-  margin-top:15px;
+  transition:.3s;
 }
+.btn:hover{transform:scale(1.05);}
 
+/* SECTIONS */
 section{
-  padding:80px 20px;
-  text-align:center;
+  max-width:1200px;
+  margin:auto;
+  padding:100px 20px;
 }
+h2{text-align:center;margin-bottom:40px;}
 
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
-  max-width:900px;
-  margin:auto;
+  gap:30px;
 }
 
+/* CARDS */
 .card{
   background:var(--card);
-  padding:25px;
-  border-radius:14px;
-  box-shadow:0 0 25px rgba(0,0,0,.4);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+  transition:.4s;
+  position:relative;
+}
+.card:hover{
+  transform:translateY(-8px);
 }
 
-.dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  display:inline-block;
+/* BEST SELLER */
+.best{
+  border:2px solid var(--gold);
+  box-shadow:0 0 25px rgba(250,204,21,.5);
+}
+.badge{
+  position:absolute;
+  top:15px;
+  right:-40px;
+  background:var(--gold);
+  color:#000;
+  padding:6px 40px;
+  font-size:.6rem;
+  transform:rotate(45deg);
+  font-weight:bold;
 }
 
-.dot.online{background:var(--accent)}
-.dot.offline{background:var(--danger)}
-.dot.warn{background:var(--warn)}
-
-.ip-box{
-  display:flex;
-  gap:10px;
-  justify-content:center;
+/* TESTIMONIALS */
+.testimonial{
+  font-size:.75rem;
+  opacity:.85;
+}
+.testimonial span{
+  display:block;
+  margin-top:10px;
+  opacity:.6;
 }
 
+/* JOIN */
 input{
-  background:#020617;
-  color:white;
-  border:none;
-  padding:10px;
-  width:220px;
-  border-radius:6px;
-  text-align:center;
-}
-
-progress{
   width:100%;
-  height:18px;
-  border-radius:8px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-family:inherit;
 }
 
+/* ANIMATIONS */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
-  padding:30px;
-  font-size:.6rem;
+  padding:40px;
   opacity:.6;
 }
 </style>
 </head>
-
 <body>
 
 <nav>
-  <div>⛏ STRONG VALERRY</div>
+  <strong>⛏ STRONG VALERRY</strong>
   <div>
-    <a href="#status">STATUS</a>
+    <a href="#home">HOME</a>
     <a href="#store">STORE</a>
     <a href="#join">JOIN</a>
+    <a href="#reviews">REVIEWS</a>
     <a href="#discord">DISCORD</a>
   </div>
 </nav>
 
-<header>
-  <h1>STRONG VALERRY</h1>
-  <p>SURVIVAL • PVP • ECONOMY</p>
-  <a class="btn" href="#join">PLAY NOW</a>
-</header>
-
-<!-- STATUS -->
-<section id="status">
-  <h2>SERVER STATUS</h2>
-
-  <div class="grid">
-    <div class="card">
-      <p>
-        <span id="dot" class="dot offline"></span>
-        <strong id="statusText">Checking...</strong>
-      </p>
-
-      <p>Players: <strong id="players">-</strong></p>
-      <p>Version: <strong id="version">-</strong></p>
-
-      <p style="margin-top:15px">Uptime</p>
-      <progress id="uptimeBar" value="0" max="100"></progress>
-      <small id="uptimeText">0 min</small>
-
-      <p style="margin-top:15px">
-        Last online:<br>
-        <small id="lastOnline">Never</small>
-      </p>
-
-      <pre id="motd">Loading...</pre>
-    </div>
+<!-- HERO -->
+<div class="hero" id="home">
+  <video autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h1>STRONG VALERRY</h1>
+    <p>SURVIVAL • PVP • ECONOMY</p>
+    <a href="#join" class="btn">PLAY NOW</a>
   </div>
-</section>
+</div>
 
 <!-- STORE -->
 <section id="store">
-  <h2>STORE</h2>
-  <div class="grid">
-    <div class="card">VIP<br>$5</div>
-    <div class="card">MVP<br>$10</div>
-    <div class="card">LEGEND<br>$20</div>
+<h2>STORE</h2>
+<div class="grid">
+
+  <div class="card reveal">
+    <h3>VIP</h3>
+    <ul>
+      <li>VIP Prefix</li>
+      <li>/kit vip</li>
+      <li>2 Homes</li>
+    </ul>
+    <strong>$5</strong><br>
+    <a class="btn" href="#">BUY</a>
   </div>
+
+  <div class="card best reveal">
+    <div class="badge">BEST</div>
+    <h3>MVP</h3>
+    <ul>
+      <li>All VIP</li>
+      <li>/fly</li>
+      <li>5 Homes</li>
+    </ul>
+    <strong>$10</strong><br>
+    <a class="btn" href="#">BUY</a>
+  </div>
+
+  <div class="card reveal">
+    <h3>LEGEND</h3>
+    <ul>
+      <li>All perks</li>
+      <li>/god</li>
+      <li>Unlimited Homes</li>
+    </ul>
+    <strong>$20</strong><br>
+    <a class="btn" href="#">BUY</a>
+  </div>
+
+</div>
 </section>
 
 <!-- JOIN -->
 <section id="join">
-  <h2>HOW TO JOIN</h2>
-  <div class="grid">
-    <div class="card">
-      <ol style="text-align:left">
-        <li>Open Minecraft Java</li>
-        <li>Multiplayer</li>
-        <li>Add Server</li>
-        <li>Paste IP</li>
-      </ol>
-    </div>
+<h2>HOW TO JOIN</h2>
+<div class="grid">
 
-    <div class="card">
-      <div class="ip-box">
-        <input id="ipInput" value="Strong-Valerry.aternos.me" readonly>
-        <button class="btn" onclick="copyIP()">COPY</button>
-      </div>
-    </div>
+  <div class="card reveal">
+    <ol>
+      <li>Open Minecraft Java</li>
+      <li>Multiplayer</li>
+      <li>Add Server</li>
+      <li>Paste IP</li>
+    </ol>
   </div>
+
+  <div class="card reveal">
+    <p>Server IP:</p>
+    <input value="Strong-Valerry.aternos.me" readonly>
+    <a class="btn" onclick="copyIP()">COPY IP</a>
+  </div>
+
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews">
+<h2>PLAYER REVIEWS</h2>
+<div class="grid">
+
+  <div class="card reveal testimonial">
+    ⭐⭐⭐⭐⭐  
+    <p>Best survival server I ever played. Staff is active and fair.</p>
+    <span>– Alex</span>
+  </div>
+
+  <div class="card reveal testimonial">
+    ⭐⭐⭐⭐⭐  
+    <p>Economy and PvP are perfectly balanced. Highly recommended!</p>
+    <span>– ShadowPvP</span>
+  </div>
+
+  <div class="card reveal testimonial">
+    ⭐⭐⭐⭐⭐  
+    <p>Feels like a premium server. Very smooth gameplay.</p>
+    <span>– KnightMC</span>
+  </div>
+
+</div>
 </section>
 
 <!-- DISCORD -->
 <section id="discord">
-  <h2>DISCORD</h2>
-  <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">
-    JOIN DISCORD
-  </a>
+<h2>DISCORD</h2>
+<p style="text-align:center;">Join our community</p>
+<div style="text-align:center;">
+  <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
+</div>
 </section>
 
 <footer>© 2026 Strong Valerry</footer>
 
 <script>
-const SERVER_IP = "Strong-Valerry.aternos.me";
-
-let onlineSince = null;
-
 function copyIP(){
-  navigator.clipboard.writeText(SERVER_IP);
+  navigator.clipboard.writeText("Strong-Valerry.aternos.me");
   alert("IP Copied!");
 }
 
-function updateStatus(){
-  fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`, {cache:'no-store'})
-    .then(res => res.json())
-    .then(data => {
-      if(!data.online){
-        dot.className = "dot offline";
-        statusText.textContent = "OFFLINE";
-        players.textContent = "-";
-        version.textContent = "-";
-        motd.textContent = "Server offline";
-        uptimeBar.value = 0;
-        uptimeText.textContent = "0 min";
-
-        localStorage.setItem("lastOnline", new Date().toLocaleString());
-        lastOnline.textContent = localStorage.getItem("lastOnline");
-        onlineSince = null;
-        return;
-      }
-
-      dot.className = "dot online";
-      players.textContent = `${data.players.online}/${data.players.max}`;
-      version.textContent = data.version.name_clean;
-      motd.textContent = data.motd.clean;
-
-      if(!onlineSince){
-        onlineSince = Date.now();
-      }
-
-      const minutes = Math.floor((Date.now() - onlineSince) / 60000);
-      uptimeText.textContent = minutes + " min";
-      uptimeBar.value = Math.min(minutes,100);
-
-      statusText.textContent = data.players.online === 0
-        ? "STARTING / EMPTY"
-        : "ONLINE";
-
-      lastOnline.textContent = "Online now";
-    })
-    .catch(()=>{
-      statusText.textContent = "ERROR";
-    });
-}
-
-updateStatus();
-setInterval(updateStatus, 5000);
+/* Scroll animations */
+const reveals=document.querySelectorAll('.reveal');
+window.addEventListener('scroll',()=>{
+  reveals.forEach(r=>{
+    const top=r.getBoundingClientRect().top;
+    if(top < window.innerHeight-100) r.classList.add('active');
+  });
+});
 </script>
 
 </body>
