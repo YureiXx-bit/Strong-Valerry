@@ -10,7 +10,7 @@
 <style>
 html{scroll-behavior:smooth}
 
-/* THEME (SAME AS MAIN SITE) */
+/* THEME */
 :root{
   --bg:#0f172a;
   --card:#020617;
@@ -55,13 +55,17 @@ nav a, nav button{
   font-family:inherit;
 }
 
-/* PAGE HEADER */
+/* HEADER */
 header{
   padding:140px 20px 80px;
   text-align:center;
 }
-header h1{font-size:clamp(2.5rem,6vw,3.5rem)}
-header p{opacity:.8}
+header h1{
+  font-size:clamp(2.5rem,6vw,3.5rem);
+}
+header p{
+  opacity:.8;
+}
 
 /* SECTIONS */
 section{
@@ -69,7 +73,10 @@ section{
   margin:auto;
   padding:60px 20px;
 }
-h2{text-align:center;margin-bottom:40px}
+h2{
+  text-align:center;
+  margin-bottom:40px;
+}
 
 /* GRID / CARDS */
 .grid{
@@ -101,37 +108,36 @@ footer{
 
 <body>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <nav>
   <strong>⛏ STRONG VALERRY</strong>
   <div>
-    <a href="index.html#status">STATUS</a>
+    <a href="index.html">HOME</a>
     <a href="index.html#features">FEATURES</a>
     <a href="shop.html" target="_blank">SHOP</a>
-    <a href="index.html#event">EVENT</a>
-    <a href="index.html#faq">FAQ</a>
-    <a href="rules.html">RULES</a>
     <a href="index.html#discord">DISCORD</a>
     <button onclick="toggleTheme()">☀ / 🌙</button>
     <button onclick="switchLang()" id="langBtn">🌐 EN</button>
   </div>
 </nav>
 
-<!-- HEADER -->
+<!-- PAGE HEADER -->
 <header>
   <h1 data-i18n="rulesTitle">SERVER RULES</h1>
-  <p data-i18n="rulesSubtitle">Follow these rules to keep the server fair and enjoyable</p>
+  <p data-i18n="rulesSubtitle">
+    Follow these rules to keep the server fair and enjoyable
+  </p>
 </header>
 
 <!-- RULES -->
 <section>
 <h2 data-i18n="rules">RULES</h2>
 <div class="grid">
-  <div class="card" data-i18n="r1">❌ No hacks, cheats, or unfair mods</div>
-  <div class="card" data-i18n="r2">🤝 Respect all players and staff</div>
-  <div class="card" data-i18n="r3">🚫 No scamming or stealing</div>
-  <div class="card" data-i18n="r4">🐞 No exploiting bugs or glitches</div>
-  <div class="card" data-i18n="r5">📢 No advertising without permission</div>
+  <div class="card" data-i18n="r1">❌ No hacks or cheats</div>
+  <div class="card" data-i18n="r2">🤝 Respect players & staff</div>
+  <div class="card" data-i18n="r3">🚫 No scamming</div>
+  <div class="card" data-i18n="r4">🐞 No exploiting bugs</div>
+  <div class="card" data-i18n="r5">📢 No advertising</div>
   <div class="card" data-i18n="r6">⚖️ Staff decisions are final</div>
 </div>
 </section>
@@ -142,15 +148,15 @@ footer{
 <div class="grid">
   <div class="card" data-i18n="p1">
     ⚠️ WARNING<br><br>
-    Minor rule violations will result in a warning.
+    Minor rule violations
   </div>
   <div class="card" data-i18n="p2">
     🔇 MUTE<br><br>
-    Repeated chat abuse or spam leads to a mute.
+    Repeated chat abuse
   </div>
   <div class="card" data-i18n="p3">
     ⛔ BAN<br><br>
-    Severe or repeated violations result in a ban.
+    Severe violations
   </div>
 </div>
 </section>
@@ -161,9 +167,13 @@ footer{
 /* THEME */
 function toggleTheme(){
   document.body.classList.toggle("light");
-  localStorage.setItem("theme",document.body.classList.contains("light"));
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light")
+  );
 }
-if(localStorage.getItem("theme")==="true") document.body.classList.add("light");
+if(localStorage.getItem("theme")==="true")
+  document.body.classList.add("light");
 
 /* TRANSLATIONS */
 const translations={
@@ -172,27 +182,27 @@ rulesTitle:"SERVER RULES",
 rulesSubtitle:"Follow these rules to keep the server fair and enjoyable",
 rules:"RULES",
 punishments:"PUNISHMENT SYSTEM",
-r1:"❌ No hacks, cheats, or unfair mods",
-r2:"🤝 Respect all players and staff",
-r3:"🚫 No scamming or stealing",
-r4:"🐞 No exploiting bugs or glitches",
-r5:"📢 No advertising without permission",
+r1:"❌ No hacks or cheats",
+r2:"🤝 Respect players & staff",
+r3:"🚫 No scamming",
+r4:"🐞 No exploiting bugs",
+r5:"📢 No advertising",
 r6:"⚖️ Staff decisions are final",
-p1:"⚠️ WARNING\n\nMinor rule violations will result in a warning.",
-p2:"🔇 MUTE\n\nRepeated chat abuse or spam leads to a mute.",
-p3:"⛔ BAN\n\nSevere or repeated violations result in a ban."
+p1:"⚠️ WARNING\n\nMinor rule violations",
+p2:"🔇 MUTE\n\nRepeated chat abuse",
+p3:"⛔ BAN\n\nSevere violations"
 },
 fr:{
 rulesTitle:"RÈGLES DU SERVEUR",
 rulesSubtitle:"Respectez les règles pour un jeu équitable",
 rules:"RÈGLES",
 punishments:"SYSTÈME DE SANCTIONS",
-r1:"❌ Pas de cheats ou hacks",
-r2:"🤝 Respectez joueurs et staff",
+r1:"❌ Pas de cheats",
+r2:"🤝 Respect joueurs et staff",
 r3:"🚫 Pas d'arnaque",
 r4:"🐞 Pas d'abus de bugs",
 r5:"📢 Pas de publicité",
-r6:"⚖️ Décisions du staff finales",
+r6:"⚖️ Décisions finales",
 p1:"⚠️ AVERTISSEMENT",
 p2:"🔇 MUTE",
 p3:"⛔ BAN"
@@ -216,7 +226,7 @@ p3:"⛔ حظر"
 
 function setLang(lang){
   localStorage.setItem("lang",lang);
-  document.documentElement.dir = lang==="ar" ? "rtl" : "ltr";
+  document.documentElement.dir = lang==="ar"?"rtl":"ltr";
   langBtn.textContent="🌐 "+lang.toUpperCase();
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     el.textContent=translations[lang][el.dataset.i18n];
