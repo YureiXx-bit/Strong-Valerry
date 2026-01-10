@@ -1,130 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strong Valerry | Server Rules</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Server Rules</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f0a;
+      --card: #121712;
+      --primary: #4caf50;
+      --text: #e5ffe5;
+      --muted: #9bb59b;
+      --danger: #e53935;
+    }
 
-<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-:root{
-  --bg:#0f172a;
-  --card:#020617;
-  --text:#e5e7eb;
-  --accent:#22c55e;
-}
-body{
-  margin:0;
-  font-family:'Minecraftia',Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+      background: radial-gradient(circle at top, #0f1a0f, #0b0f0a);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-/* NAVBAR */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(2,6,23,.95);
-  backdrop-filter:blur(10px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 25px;
-  z-index:1000;
-}
-nav a{
-  color:var(--text);
-  text-decoration:none;
-  margin-left:15px;
-}
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(11,15,10,0.95);
+      border-bottom: 1px solid #1f2a1f;
+      z-index: 1000;
+    }
 
-/* HEADER */
-header{
-  min-height:60vh;
-  background:url("https://i.imgur.com/7Z6F9A5.jpg") center/cover;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-header h1{
-  font-size:clamp(2.5rem,5vw,4rem);
-  text-shadow:0 0 20px black;
-}
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* CONTENT */
-section{
-  max-width:1000px;
-  margin:auto;
-  padding:120px 20px 80px;
-}
-.card{
-  background:var(--card);
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 20px 40px rgba(0,0,0,.5);
-}
+    .logo {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
 
-/* RULE LIST */
-ol{
-  line-height:1.8;
-  padding-left:25px;
-}
-li{
-  margin-bottom:12px;
-}
+    .nav-links { list-style: none; display: flex; gap: 25px; }
 
-footer{
-  text-align:center;
-  padding:30px;
-  opacity:.6;
-}
-</style>
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links .active { color: var(--primary); }
+
+    header {
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { color: var(--muted); max-width: 600px; margin: auto; }
+
+    .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .rule-card {
+      background: linear-gradient(180deg, #121712, #0c110c);
+      border: 1px solid #1f2a1f;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .rule-card:hover { transform: translateY(-6px); }
+
+    .rule-card h3 { display: flex; gap: 10px; align-items: center; }
+
+    .rule-card span {
+      background: rgba(76,175,80,0.15);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .important { border-left: 4px solid var(--danger); }
+
+    /* PUNISHMENTS */
+    .punishments {
+      margin-top: 80px;
+    }
+
+    .punishments h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .punish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .punish-card {
+      background: #121712;
+      border: 1px solid #1f2a1f;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .punish-card h3 { margin-bottom: 10px; color: var(--primary); }
+    .punish-card p { color: var(--muted); font-size: 0.95rem; }
+
+    footer {
+      margin-top: 80px;
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid #1f2937;
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav>
-  <strong>⛏ STRONG VALERRY</strong>
-  <div>
-    <a href="index.html">HOME</a>
-    <a href="https://discord.gg/VcNqSgA8q6" target="_blank">DISCORD</a>
-  </div>
-</nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">⛏️ MC Server</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rules.html" class="active">Rules</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="https://discord.gg/yourserver" target="_blank">Discord</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<!-- HEADER -->
-<header>
-  <h1>SERVER RULES</h1>
-</header>
+  <header>
+    <h1>Server Rules</h1>
+    <p>Please read and follow these rules to keep our community fair, safe, and enjoyable for everyone.</p>
+  </header>
 
-<!-- RULES -->
-<section>
-  <div class="card">
-    <h2>📜 Minecraft Server Rules</h2>
+  <main class="container">
+    <section class="rules-grid">
 
-    <ol>
-      <li>No hacks, cheats, or unfair mods (X-ray, KillAura, Fly, etc.).</li>
-      <li>Respect all players and staff members.</li>
-      <li>No racism, hate speech, or toxic behavior.</li>
-      <li>No scamming, stealing accounts, or impersonation.</li>
-      <li>No exploiting bugs or glitches.</li>
-      <li>No excessive griefing outside PvP zones.</li>
-      <li>No spamming or advertising other servers.</li>
-      <li>Staff decisions are final.</li>
-    </ol>
+      <div class="rule-card">
+        <h3><span>Rule 01</span> Respect All Players</h3>
+        <p>Harassment, hate speech, discrimination, or toxic behavior is strictly forbidden.</p>
+      </div>
 
-    <p style="margin-top:20px;opacity:.8">
-      Breaking the rules may result in a mute, kick, ban, or permanent blacklist.
-    </p>
-  </div>
-</section>
+      <div class="rule-card">
+        <h3><span>Rule 02</span> No Cheating</h3>
+        <p>Using hacks, exploits, bugs, or unfair modifications will result in severe punishment.</p>
+      </div>
 
-<footer>
-  © 2026 Strong Valerry • All Rights Reserved
-</footer>
+      <div class="rule-card">
+        <h3><span>Rule 03</span> No Griefing</h3>
+        <p>Destroying or stealing other players' builds without permission is not allowed.</p>
+      </div>
+
+      <div class="rule-card">
+        <h3><span>Rule 04</span> Appropriate Language</h3>
+        <p>Keep chat clean and friendly. Excessive swearing or offensive language is prohibited.</p>
+      </div>
+
+      <div class="rule-card important">
+        <h3><span>Rule 05</span> Follow Staff Instructions</h3>
+        <p>Staff decisions are final. Ignoring or arguing with staff may lead to punishment.</p>
+      </div>
+
+      <div class="rule-card">
+        <h3><span>Rule 06</span> No Advertising</h3>
+        <p>Advertising other servers, websites, or services without permission is not allowed.</p>
+      </div>
+
+    </section>
+
+    <section class="punishments">
+      <h2>⚖️ Punishment System</h2>
+      <div class="punish-grid">
+        <div class="punish-card">
+          <h3>⚠️ Warning</h3>
+          <p>Minor rule breaks will result in a warning. Repeated warnings lead to stronger punishment.</p>
+        </div>
+        <div class="punish-card">
+          <h3>🔇 Mute</h3>
+          <p>Chat-related rule violations may result in a temporary or permanent mute.</p>
+        </div>
+        <div class="punish-card">
+          <h3>⛔ Ban</h3>
+          <p>Severe or repeated violations will result in a temporary or permanent ban.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>By playing on this server, you agree to follow all rules. <strong>Rules may change at any time.</strong></p>
+  </footer>
 
 </body>
 </html>
