@@ -3,62 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strong Valerry | Rules</title>
+<title>Strong Valerry | Server Rules</title>
 
 <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --text:#e5e7eb;
+  --accent:#22c55e;
+}
 body{
   margin:0;
   font-family:'Minecraftia',Arial,sans-serif;
-  background:#0f172a;
-  color:#e5e7eb;
+  background:var(--bg);
+  color:var(--text);
 }
 
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(2,6,23,.95);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  z-index:1000;
+}
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  margin-left:15px;
+}
+
+/* HEADER */
 header{
+  min-height:60vh;
+  background:url("https://i.imgur.com/7Z6F9A5.jpg") center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:80px 20px;
+}
+header h1{
+  font-size:clamp(2.5rem,5vw,4rem);
+  text-shadow:0 0 20px black;
 }
 
+/* CONTENT */
 section{
-  max-width:800px;
+  max-width:1000px;
   margin:auto;
-  padding:40px 20px;
+  padding:120px 20px 80px;
 }
-
 .card{
-  background:#020617;
+  background:var(--card);
   padding:30px;
   border-radius:16px;
-  box-shadow:0 15px 30px rgba(0,0,0,.4);
+  box-shadow:0 20px 40px rgba(0,0,0,.5);
 }
 
-li{margin-bottom:15px;}
-a{color:#22c55e;text-decoration:none;}
+/* RULE LIST */
+ol{
+  line-height:1.8;
+  padding-left:25px;
+}
+li{
+  margin-bottom:12px;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
+<nav>
+  <strong>⛏ STRONG VALERRY</strong>
+  <div>
+    <a href="index.html">HOME</a>
+    <a href="https://discord.gg/VcNqSgA8q6" target="_blank">DISCORD</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
 <header>
-  <h1>📜 SERVER RULES</h1>
-  <p>Follow these rules to keep the server fair and fun</p>
-  <a href="index.html">← Back to Home</a>
+  <h1>SERVER RULES</h1>
 </header>
 
+<!-- RULES -->
 <section>
-<div class="card">
-<ol>
-  <li>No cheats, hacks, or unfair mods</li>
-  <li>No toxic behavior or harassment</li>
-  <li>No griefing in claimed land</li>
-  <li>No scamming players</li>
-  <li>Respect staff decisions</li>
-  <li>No exploiting bugs</li>
-  <li>English only in global chat</li>
-</ol>
-</div>
+  <div class="card">
+    <h2>📜 Minecraft Server Rules</h2>
+
+    <ol>
+      <li>No hacks, cheats, or unfair mods (X-ray, KillAura, Fly, etc.).</li>
+      <li>Respect all players and staff members.</li>
+      <li>No racism, hate speech, or toxic behavior.</li>
+      <li>No scamming, stealing accounts, or impersonation.</li>
+      <li>No exploiting bugs or glitches.</li>
+      <li>No excessive griefing outside PvP zones.</li>
+      <li>No spamming or advertising other servers.</li>
+      <li>Staff decisions are final.</li>
+    </ol>
+
+    <p style="margin-top:20px;opacity:.8">
+      Breaking the rules may result in a mute, kick, ban, or permanent blacklist.
+    </p>
+  </div>
 </section>
+
+<footer>
+  © 2026 Strong Valerry • All Rights Reserved
+</footer>
 
 </body>
 </html>
