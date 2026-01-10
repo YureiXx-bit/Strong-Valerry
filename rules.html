@@ -1,194 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Server Rules</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strong Valerry | Rules</title>
+
+<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
+<style>
+html{scroll-behavior:smooth}
+
+/* THEME (SAME AS MAIN SITE) */
 :root{
-  --bg:#0b1220;
-  --bg-soft:#0f172a;
-  --card:#0b1324;
-  --border:#1e293b;
-  --primary:#38bdf8; /* cyan/blue like main site */
+  --bg:#0f172a;
+  --card:#020617;
   --text:#e5e7eb;
-  --muted:#94a3b8;
-  --danger:#ef4444;
+  --accent:#22c55e;
+}
+body.light{
+  --bg:#e5e7eb;
+  --card:#ffffff;
+  --text:#020617;
+  --accent:#16a34a;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-
 body{
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #0b1220 70%);
+  margin:0;
+  font-family:'Minecraftia',Arial,sans-serif;
+  background:var(--bg);
   color:var(--text);
+  transition:.3s;
 }
 
 /* NAVBAR */
-.navbar{
+nav{
   position:fixed;
-  top:0;left:0;width:100%;
-  background:rgba(11,18,32,.9);
-  border-bottom:1px solid var(--border);
-  backdrop-filter: blur(6px);
+  top:0;
+  width:100%;
   z-index:1000;
-}
-
-.nav-container{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 20px;
+  background:rgba(2,6,23,.9);
+  backdrop-filter:blur(10px);
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:15px 25px;
 }
-
-.logo{color:var(--text);font-weight:600;letter-spacing:.5px}
-
-.nav-links{list-style:none;display:flex;gap:28px}
-.nav-links a{
-  color:var(--muted);
+nav a, nav button{
+  color:var(--text);
   text-decoration:none;
-  font-size:.9rem;
+  margin-left:15px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
 }
-.nav-links a:hover,.nav-links .active{color:var(--primary)}
 
+/* PAGE HEADER */
 header{
-  margin-top:90px;
+  padding:140px 20px 80px;
+  text-align:center;
+}
+header h1{font-size:clamp(2.5rem,6vw,3.5rem)}
+header p{opacity:.8}
+
+/* SECTIONS */
+section{
+  max-width:1200px;
+  margin:auto;
   padding:60px 20px;
-  text-align:center;
 }
-header h1{font-size:2.2rem;font-weight:600}
-header p{color:var(--muted);margin-top:10px}
+h2{text-align:center;margin-bottom:40px}
 
-.container{max-width:1000px;margin:0 auto;padding:0 20px}
-
-.rules-grid{
+/* GRID / CARDS */
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
 }
-
-.rule-card{
-  background:linear-gradient(180deg,var(--card),var(--bg-soft));
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:22px;
-}
-
-.rule-card h3{font-size:1rem;margin-bottom:6px}
-.rule-card span{color:var(--primary);font-weight:500;margin-right:6px}
-.rule-card p{color:var(--muted);font-size:.9rem}
-
-.important{border-left:3px solid var(--danger)}
-
-/* PUNISHMENTS */
-.punishments{margin:80px 0}
-.punishments h2{text-align:center;font-size:1.8rem;margin-bottom:30px}
-
-.punish-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
-.punish-card{
+.card{
   background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:24px;
-  text-align:center;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 15px 30px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(30px);
+  transition:.6s ease;
 }
-
-.punish-card h3{color:var(--primary);margin-bottom:8px}
-.punish-card p{color:var(--muted);font-size:.9rem}
+.card.show{
+  opacity:1;
+  transform:none;
+}
 
 footer{
-  border-top:1px solid var(--border);
   text-align:center;
-  padding:30px 20px;
-  color:var(--muted);
+  padding:40px;
+  opacity:.7;
 }
 </style>
 </head>
+
 <body>
 
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">⛏️ MC Server</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="rules.html" class="active">Rules</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="https://discord.gg/yourserver" target="_blank">Discord</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- NAV -->
+<nav>
+  <strong>⛏ STRONG VALERRY</strong>
+  <div>
+    <a href="index.html#status">STATUS</a>
+    <a href="index.html#features">FEATURES</a>
+    <a href="shop.html" target="_blank">SHOP</a>
+    <a href="index.html#event">EVENT</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="rules.html">RULES</a>
+    <a href="index.html#discord">DISCORD</a>
+    <button onclick="toggleTheme()">☀ / 🌙</button>
+    <button onclick="switchLang()" id="langBtn">🌐 EN</button>
+  </div>
+</nav>
 
-  <header>
-    <h1>Server Rules</h1>
-    <p>Please read and follow these rules to keep our community fair, safe, and enjoyable for everyone.</p>
-  </header>
+<!-- HEADER -->
+<header>
+  <h1 data-i18n="rulesTitle">SERVER RULES</h1>
+  <p data-i18n="rulesSubtitle">Follow these rules to keep the server fair and enjoyable</p>
+</header>
 
-  <main class="container">
-    <section class="rules-grid">
+<!-- RULES -->
+<section>
+<h2 data-i18n="rules">RULES</h2>
+<div class="grid">
+  <div class="card" data-i18n="r1">❌ No hacks, cheats, or unfair mods</div>
+  <div class="card" data-i18n="r2">🤝 Respect all players and staff</div>
+  <div class="card" data-i18n="r3">🚫 No scamming or stealing</div>
+  <div class="card" data-i18n="r4">🐞 No exploiting bugs or glitches</div>
+  <div class="card" data-i18n="r5">📢 No advertising without permission</div>
+  <div class="card" data-i18n="r6">⚖️ Staff decisions are final</div>
+</div>
+</section>
 
-      <div class="rule-card">
-        <h3><span>Rule 01</span> Respect All Players</h3>
-        <p>Harassment, hate speech, discrimination, or toxic behavior is strictly forbidden.</p>
-      </div>
+<!-- PUNISHMENTS -->
+<section>
+<h2 data-i18n="punishments">PUNISHMENT SYSTEM</h2>
+<div class="grid">
+  <div class="card" data-i18n="p1">
+    ⚠️ WARNING<br><br>
+    Minor rule violations will result in a warning.
+  </div>
+  <div class="card" data-i18n="p2">
+    🔇 MUTE<br><br>
+    Repeated chat abuse or spam leads to a mute.
+  </div>
+  <div class="card" data-i18n="p3">
+    ⛔ BAN<br><br>
+    Severe or repeated violations result in a ban.
+  </div>
+</div>
+</section>
 
-      <div class="rule-card">
-        <h3><span>Rule 02</span> No Cheating</h3>
-        <p>Using hacks, exploits, bugs, or unfair modifications will result in severe punishment.</p>
-      </div>
+<footer>© 2026 Strong Valerry</footer>
 
-      <div class="rule-card">
-        <h3><span>Rule 03</span> No Griefing</h3>
-        <p>Destroying or stealing other players' builds without permission is not allowed.</p>
-      </div>
+<script>
+/* THEME */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme",document.body.classList.contains("light"));
+}
+if(localStorage.getItem("theme")==="true") document.body.classList.add("light");
 
-      <div class="rule-card">
-        <h3><span>Rule 04</span> Appropriate Language</h3>
-        <p>Keep chat clean and friendly. Excessive swearing or offensive language is prohibited.</p>
-      </div>
+/* TRANSLATIONS */
+const translations={
+en:{
+rulesTitle:"SERVER RULES",
+rulesSubtitle:"Follow these rules to keep the server fair and enjoyable",
+rules:"RULES",
+punishments:"PUNISHMENT SYSTEM",
+r1:"❌ No hacks, cheats, or unfair mods",
+r2:"🤝 Respect all players and staff",
+r3:"🚫 No scamming or stealing",
+r4:"🐞 No exploiting bugs or glitches",
+r5:"📢 No advertising without permission",
+r6:"⚖️ Staff decisions are final",
+p1:"⚠️ WARNING\n\nMinor rule violations will result in a warning.",
+p2:"🔇 MUTE\n\nRepeated chat abuse or spam leads to a mute.",
+p3:"⛔ BAN\n\nSevere or repeated violations result in a ban."
+},
+fr:{
+rulesTitle:"RÈGLES DU SERVEUR",
+rulesSubtitle:"Respectez les règles pour un jeu équitable",
+rules:"RÈGLES",
+punishments:"SYSTÈME DE SANCTIONS",
+r1:"❌ Pas de cheats ou hacks",
+r2:"🤝 Respectez joueurs et staff",
+r3:"🚫 Pas d'arnaque",
+r4:"🐞 Pas d'abus de bugs",
+r5:"📢 Pas de publicité",
+r6:"⚖️ Décisions du staff finales",
+p1:"⚠️ AVERTISSEMENT",
+p2:"🔇 MUTE",
+p3:"⛔ BAN"
+},
+ar:{
+rulesTitle:"قوانين السيرفر",
+rulesSubtitle:"الرجاء الالتزام بالقوانين",
+rules:"القوانين",
+punishments:"نظام العقوبات",
+r1:"❌ ممنوع الغش",
+r2:"🤝 احترام الجميع",
+r3:"🚫 ممنوع النصب",
+r4:"🐞 ممنوع استغلال الأخطاء",
+r5:"📢 ممنوع الإعلانات",
+r6:"⚖️ قرارات الإدارة نهائية",
+p1:"⚠️ إنذار",
+p2:"🔇 كتم",
+p3:"⛔ حظر"
+}
+};
 
-      <div class="rule-card important">
-        <h3><span>Rule 05</span> Follow Staff Instructions</h3>
-        <p>Staff decisions are final. Ignoring or arguing with staff may lead to punishment.</p>
-      </div>
+function setLang(lang){
+  localStorage.setItem("lang",lang);
+  document.documentElement.dir = lang==="ar" ? "rtl" : "ltr";
+  langBtn.textContent="🌐 "+lang.toUpperCase();
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    el.textContent=translations[lang][el.dataset.i18n];
+  });
+}
 
-      <div class="rule-card">
-        <h3><span>Rule 06</span> No Advertising</h3>
-        <p>Advertising other servers, websites, or services without permission is not allowed.</p>
-      </div>
+let currentLang=localStorage.getItem("lang")||"en";
+if(!translations[currentLang]) currentLang="en";
+setLang(currentLang);
 
-    </section>
+function switchLang(){
+  const langs=["en","fr","ar"];
+  setLang(langs[(langs.indexOf(currentLang)+1)%langs.length]);
+  currentLang=localStorage.getItem("lang");
+}
 
-    <section class="punishments">
-      <h2>⚖️ Punishment System</h2>
-      <div class="punish-grid">
-        <div class="punish-card">
-          <h3>⚠️ Warning</h3>
-          <p>Minor rule breaks will result in a warning. Repeated warnings lead to stronger punishment.</p>
-        </div>
-        <div class="punish-card">
-          <h3>🔇 Mute</h3>
-          <p>Chat-related rule violations may result in a temporary or permanent mute.</p>
-        </div>
-        <div class="punish-card">
-          <h3>⛔ Ban</h3>
-          <p>Severe or repeated violations will result in a temporary or permanent ban.</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>By playing on this server, you agree to follow all rules. <strong>Rules may change at any time.</strong></p>
-  </footer>
+/* SCROLL ANIMATION */
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+  cards.forEach(c=>{
+    if(c.getBoundingClientRect().top<window.innerHeight-60)
+      c.classList.add("show");
+  });
+});
+</script>
 
 </body>
 </html>
