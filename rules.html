@@ -6,137 +6,111 @@
   <title>Server Rules</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0f0a;
-      --card: #121712;
-      --primary: #4caf50;
-      --text: #e5ffe5;
-      --muted: #9bb59b;
-      --danger: #e53935;
-    }
+:root{
+  --bg:#0b1220;
+  --bg-soft:#0f172a;
+  --card:#0b1324;
+  --border:#1e293b;
+  --primary:#38bdf8; /* cyan/blue like main site */
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --danger:#ef4444;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    body {
-      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-      background: radial-gradient(circle at top, #0f1a0f, #0b0f0a);
-      color: var(--text);
-      line-height: 1.6;
-    }
+body{
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #0b1220 70%);
+  color:var(--text);
+}
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(11,15,10,0.95);
-      border-bottom: 1px solid #1f2a1f;
-      z-index: 1000;
-    }
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;left:0;width:100%;
+  background:rgba(11,18,32,.9);
+  border-bottom:1px solid var(--border);
+  backdrop-filter: blur(6px);
+  z-index:1000;
+}
 
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .logo {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
+.logo{color:var(--text);font-weight:600;letter-spacing:.5px}
 
-    .nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links{list-style:none;display:flex;gap:28px}
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:.9rem;
+}
+.nav-links a:hover,.nav-links .active{color:var(--primary)}
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
+header{
+  margin-top:90px;
+  padding:60px 20px;
+  text-align:center;
+}
+header h1{font-size:2.2rem;font-weight:600}
+header p{color:var(--muted);margin-top:10px}
 
-    .nav-links a:hover, .nav-links .active { color: var(--primary); }
+.container{max-width:1000px;margin:0 auto;padding:0 20px}
 
-    header {
-      padding: 60px 20px;
-      text-align: center;
-      border-bottom: 1px solid #1f2937;
-    }
+.rules-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:22px;
+}
 
-    header h1 { font-size: 3rem; margin-bottom: 10px; }
-    header p { color: var(--muted); max-width: 600px; margin: auto; }
+.rule-card{
+  background:linear-gradient(180deg,var(--card),var(--bg-soft));
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px;
+}
 
-    .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+.rule-card h3{font-size:1rem;margin-bottom:6px}
+.rule-card span{color:var(--primary);font-weight:500;margin-right:6px}
+.rule-card p{color:var(--muted);font-size:.9rem}
 
-    .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+.important{border-left:3px solid var(--danger)}
 
-    .rule-card {
-      background: linear-gradient(180deg, #121712, #0c110c);
-      border: 1px solid #1f2a1f;
-      border-radius: 18px;
-      padding: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+/* PUNISHMENTS */
+.punishments{margin:80px 0}
+.punishments h2{text-align:center;font-size:1.8rem;margin-bottom:30px}
 
-    .rule-card:hover { transform: translateY(-6px); }
+.punish-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
 
-    .rule-card h3 { display: flex; gap: 10px; align-items: center; }
+.punish-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px;
+  text-align:center;
+}
 
-    .rule-card span {
-      background: rgba(76,175,80,0.15);
-      color: var(--primary);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
+.punish-card h3{color:var(--primary);margin-bottom:8px}
+.punish-card p{color:var(--muted);font-size:.9rem}
 
-    .important { border-left: 4px solid var(--danger); }
-
-    /* PUNISHMENTS */
-    .punishments {
-      margin-top: 80px;
-    }
-
-    .punishments h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 2rem;
-    }
-
-    .punish-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-
-    .punish-card {
-      background: #121712;
-      border: 1px solid #1f2a1f;
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-    }
-
-    .punish-card h3 { margin-bottom: 10px; color: var(--primary); }
-    .punish-card p { color: var(--muted); font-size: 0.95rem; }
-
-    footer {
-      margin-top: 80px;
-      padding: 30px 20px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid #1f2937;
-    }
-  </style>
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:30px 20px;
+  color:var(--muted);
+}
+</style>
 </head>
 <body>
 
