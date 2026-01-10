@@ -1,134 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strong Valerry | Minecraft Server</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strong Valerry | Minecraft Server</title>
 
-  <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 
-  <style>
-    html { scroll-behavior: smooth; }
+<style>
+html { scroll-behavior:smooth; }
 
-    :root {
-      --bg: #0f172a;
-      --card: #020617;
-      --text: #e5e7eb;
-      --accent: #22c55e;
-    }
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --text:#e5e7eb;
+  --accent:#22c55e;
+  --offline:#ef4444;
+}
 
-    body.light {
-      --bg: #e5e7eb;
-      --card: #ffffff;
-      --text: #020617;
-      --accent: #16a34a;
-    }
+body.light{
+  --bg:#e5e7eb;
+  --card:#ffffff;
+  --text:#020617;
+  --accent:#16a34a;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Minecraftia', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background .3s, color .3s;
-    }
+body{
+  margin:0;
+  font-family:'Minecraftia',Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    nav {
-      position: sticky; top: 0; z-index: 1000;
-      background: var(--card);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 30px;
-    }
+nav{
+  position:sticky;
+  top:0;
+  background:var(--card);
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+}
 
-    nav a, nav button {
-      color: var(--text);
-      margin-left: 15px;
-      text-decoration: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-    }
+nav a,nav button{
+  margin-left:15px;
+  color:var(--text);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  font-family:inherit;
+}
 
-    header {
-      padding: 120px 20px;
-      text-align: center;
-    }
+header{
+  text-align:center;
+  padding:120px 20px;
+}
 
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 80px 20px;
-    }
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px;
+}
 
-    h1, h2 { text-align: center; }
+h1,h2{text-align:center;}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+  text-align:center;
+}
 
-    .card {
-      background: var(--card);
-      padding: 28px;
-      border-radius: 18px;
-      position: relative;
-      box-shadow: 0 10px 25px rgba(0,0,0,.35);
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(0,0,0,.5);
-    }
+.btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  background:var(--accent);
+  color:#000;
+  border-radius:10px;
+  font-weight:bold;
+  text-decoration:none;
+}
 
-    .shine::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.25), transparent 70%);
-      transform: translateX(-100%);
-    }
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:6px;
+}
 
-    .card:hover.shine::before { animation: shine 1.2s forwards; }
+.online{background:var(--accent);}
+.offline{background:var(--offline);}
 
-    @keyframes shine { to { transform: translateX(100%); } }
+.server-icon{
+  width:96px;
+  height:96px;
+  border-radius:16px;
+  image-rendering:pixelated;
+  margin-bottom:15px;
+  display:none;
+}
 
-    .badge {
-      position: absolute;
-      top: 12px;
-      right: -35px;
-      background: gold;
-      color: #000;
-      padding: 6px 40px;
-      font-size: .6rem;
-      transform: rotate(45deg);
-      font-weight: bold;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: #000;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .dot { width:10px;height:10px;border-radius:50%;display:inline-block; }
-    .online { background:#22c55e; }
-    .offline { background:#ef4444; }
-
-    footer {
-      text-align:center;
-      padding:40px;
-      opacity:.7;
-    }
-  </style>
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:.7;
+}
+</style>
 </head>
+
 <body>
 
 <nav>
@@ -140,111 +130,121 @@
     <a href="#join">JOIN</a>
     <a href="#discord">DISCORD</a>
     <button onclick="toggleTheme()">☀ / 🌙</button>
-    <button id="langBtn" onclick="cycleLang()">🌐 EN</button>
   </div>
 </nav>
 
 <header id="home">
-  <h1 data-i18n="title">STRONG VALERRY</h1>
-  <p data-i18n="subtitle">SURVIVAL • PVP • ECONOMY</p>
-  <a class="btn" href="#join" data-i18n="play">PLAY NOW</a>
+  <h1>STRONG VALERRY</h1>
+  <p>SURVIVAL • PVP • ECONOMY</p>
+  <a class="btn" href="#join">PLAY NOW</a>
 </header>
 
-<section id="status">
-  <h2 data-i18n="status">SERVER STATUS</h2>
+<!-- STATUS -->
+<section id="status" style="display:none">
+  <h2>SERVER STATUS</h2>
+
   <div class="card">
-    <p><span id="dot" class="dot"></span> <strong id="statusText">Checking...</strong></p>
-    <p><strong data-i18n="players">Players</strong>: <span id="players">-</span></p>
-    <p><strong>Version</strong>: <span id="version">-</span></p>
-    <pre id="motd">Loading...</pre>
+    <img id="serverIcon" class="server-icon">
+
+    <p>
+      <span id="dot" class="dot"></span>
+      <strong id="statusText"></strong>
+    </p>
+
+    <p>Players: <span id="players">-</span></p>
+    <p>Version: <span id="version">-</span></p>
+    <pre id="motd"></pre>
   </div>
 </section>
 
 <section id="store">
-  <h2>STORE – RANKS</h2>
+  <h2>STORE</h2>
   <div class="grid">
-    <div class="card" style="border:2px solid #22c55e">
-      <h3>VIP</h3><ul><li>VIP prefix</li><li>/kit vip</li><li>2 homes</li></ul><strong>$5</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a>
-    </div>
-    <div class="card shine" style="border:2px solid gold">
-      <div class="badge">BEST</div>
-      <h3>MVP</h3><ul><li>All VIP</li><li>/fly</li><li>5 homes</li></ul><strong>$10</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a>
-    </div>
-    <div class="card" style="border:2px solid #ef4444">
-      <h3>LEGEND</h3><ul><li>All perks</li><li>/god</li><li>Unlimited homes</li></ul><strong>$20</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a>
-    </div>
-  </div>
-
-  <h2 style="margin-top:80px">EXTRA ITEMS</h2>
-  <div class="grid">
-    <div class="card"><h3>🗝 Vote Key</h3><strong>$2</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a></div>
-    <div class="card"><h3>🔑 Epic Key</h3><strong>$5</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a></div>
-    <div class="card shine"><h3>📦 Legendary Crate</h3><strong>$10</strong><a class="btn" href="https://discord.gg/VcNqSgA8q6">BUY</a></div>
+    <div class="card"><h3>VIP</h3><p>$5</p></div>
+    <div class="card"><h3>MVP</h3><p>$10</p></div>
+    <div class="card"><h3>LEGEND</h3><p>$20</p></div>
   </div>
 </section>
 
 <section id="join">
-  <h2 data-i18n="join">HOW TO JOIN</h2>
+  <h2>HOW TO JOIN</h2>
   <div class="grid">
-
     <div class="card">
-      <h3>Java Edition</h3>
       <ol>
-        <li>Open <strong>Minecraft Java</strong></li>
-        <li>Click <strong>Multiplayer</strong></li>
-        <li>Select <strong>Add Server</strong></li>
-        <li>Paste the IP address</li>
-        <li>Click <strong>Join Server</strong></li>
+        <li>Open Minecraft Java</li>
+        <li>Multiplayer → Add Server</li>
+        <li>Paste the IP</li>
       </ol>
     </div>
-
     <div class="card">
-      <h3>Server Address</h3>
-      <p>Copy & paste this IP into Minecraft:</p>
-      <input id="ipInput" value="Strong-Valerry.aternos.me" readonly style="width:100%;padding:10px;border-radius:10px;border:none;font-family:inherit">
-      <a class="btn" style="margin-top:15px" onclick="copyIP()">COPY IP</a>
-      <p style="opacity:.6;margin-top:10px">Version: Java • Latest</p>
+      <h3>Server IP</h3>
+      <input id="ipInput" value="Strong-Valerry.aternos.me" readonly
+        style="width:100%;padding:10px;border-radius:10px;border:none;font-family:inherit">
+      <a class="btn" onclick="copyIP()">COPY IP</a>
     </div>
-
   </div>
 </section>
 
 <section id="discord">
   <h2>DISCORD</h2>
-  <p style="text-align:center;opacity:.7">Join our community, get support, and buy ranks safely</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Join our Discord</h3>
-      <p>• Server news & updates<br>• Support & tickets<br>• Rank purchases</p>
-      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
-    </div>
-
-    <div class="card" style="padding:0;overflow:hidden">
-      <iframe 
-        src="https://discord.gg/VcNqSgA8q6" 
-        width="100%" 
-        height="350" 
-        allowtransparency="true" 
-        frameborder="0" 
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-      </iframe>
-    </div>
+  <div style="text-align:center">
+    <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
   </div>
 </section>
 
 <footer>© 2026 Strong Valerry</footer>
 
 <script>
-const SERVER_IP='Strong-Valerry.aternos.me';
-const translations={en:{title:'STRONG VALERRY',subtitle:'SURVIVAL • PVP • ECONOMY',play:'PLAY NOW',join:'HOW TO JOIN',status:'SERVER STATUS',players:'Players'},fr:{title:'STRONG VALERRY',subtitle:'SURVIE • PVP • ÉCONOMIE',play:'JOUER',join:'COMMENT REJOINDRE',status:'STATUT',players:'Joueurs'},ar:{title:'سترونغ فاليري',subtitle:'سيرفايفل • بي في بي • اقتصاد',play:'العب الآن',join:'طريقة الدخول',status:'حالة السيرفر',players:'اللاعبون'}};
-function cycleLang(){const l=['en','fr','ar'];const c=localStorage.getItem('lang')||'en';setLang(l[(l.indexOf(c)+1)%3]);}
-function setLang(l){localStorage.setItem('lang',l);document.documentElement.dir=l==='ar'?'rtl':'ltr';langBtn.textContent='🌐 '+l.toUpperCase();document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=translations[l][e.dataset.i18n]);}
-setLang(localStorage.getItem('lang')||'en');
-function toggleTheme(){document.body.classList.toggle('light');}
-function copyIP(){navigator.clipboard.writeText(SERVER_IP);alert('IP Copied');}
-function updateStatus(){fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`,{cache:'no-store'}).then(r=>r.json()).then(d=>{if(d.online){dot.className='dot online';statusText.textContent='ONLINE';players.textContent=`${d.players.online}/${d.players.max}`;version.textContent=d.version.name_clean;motd.textContent=d.motd.clean;}else{dot.className='dot offline';statusText.textContent='OFFLINE';}});}
-updateStatus();setInterval(updateStatus,10000);
+const SERVER_IP = 'Strong-Valerry.aternos.me';
+
+function toggleTheme(){
+  document.body.classList.toggle('light');
+}
+
+function copyIP(){
+  navigator.clipboard.writeText(SERVER_IP);
+  alert('IP Copied!');
+}
+
+function updateStatus(){
+  fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`, {cache:'no-store'})
+    .then(r=>r.json())
+    .then(d=>{
+      if(!d.players) throw 'offline';
+
+      // AUTO-HIDE IDLE (0 players)
+      if(d.players.online === 0){
+        document.getElementById('status').style.display = 'none';
+        return;
+      }
+
+      // SHOW ONLY WHEN REALLY ONLINE
+      document.getElementById('status').style.display = 'block';
+
+      if(d.icon){
+        serverIcon.src = d.icon;
+        serverIcon.style.display = 'block';
+      }
+
+      dot.className = 'dot online';
+      statusText.textContent = 'ONLINE';
+      players.textContent = `${d.players.online}/${d.players.max}`;
+      version.textContent = d.version.name_clean;
+      motd.textContent = d.motd.clean;
+    })
+    .catch(()=>{
+      document.getElementById('status').style.display = 'block';
+      dot.className = 'dot offline';
+      statusText.textContent = 'OFFLINE';
+      players.textContent = '-';
+      version.textContent = '-';
+      motd.textContent = 'Server is offline';
+      serverIcon.style.display = 'none';
+    });
+}
+
+updateStatus();
+setInterval(updateStatus, 10000);
 </script>
 
 </body>
