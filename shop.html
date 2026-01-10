@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strong Valerry | Shop</title>
+
+<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --text:#e5e7eb;
+  --accent:#22c55e;
+}
+body{
+  margin:0;
+  font-family:'Minecraftia',Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(2,6,23,.95);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  z-index:1000;
+}
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  margin-left:18px;
+}
+
+/* HERO */
+header{
+  min-height:70vh;
+  background:url("https://i.imgur.com/WbQ9ZlK.jpg") center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+header h1{
+  font-size:clamp(2.5rem,5vw,4rem);
+  text-shadow:0 0 20px black;
+}
+
+/* SECTIONS */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:120px 20px 80px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+/* CARDS */
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.5);
+  position:relative;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-10px);
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:15px;
+  right:-40px;
+  background:gold;
+  color:black;
+  padding:8px 45px;
+  font-size:.6rem;
+  transform:rotate(45deg);
+  font-weight:bold;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:14px 20px;
+  border-radius:12px;
+  background:linear-gradient(45deg,#22c55e,#16a34a);
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <strong>🛒 STRONG VALERRY SHOP</strong>
+  <div>
+    <a href="index.html">HOME</a>
+    <a href="rules.html">RULES</a>
+    <a href="https://discord.gg/VcNqSgA8q6" target="_blank">DISCORD</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <h1>OFFICIAL STORE</h1>
+</header>
+
+<!-- RANKS -->
+<section>
+  <h2>🏆 RANKS</h2>
+  <div class="grid">
+
+    <div class="card" style="border:2px solid #22c55e">
+      <h3>VIP</h3>
+      <p>Perfect for starters</p>
+      <ul>
+        <li>✔ VIP Prefix</li>
+        <li>✔ /kit vip</li>
+        <li>✔ 2 Homes</li>
+      </ul>
+      <strong>$5</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a>
+    </div>
+
+    <div class="card" style="border:2px solid gold">
+      <div class="badge">POPULAR</div>
+      <h3>MVP</h3>
+      <p>Best value</p>
+      <ul>
+        <li>✔ All VIP perks</li>
+        <li>✔ /fly</li>
+        <li>✔ 5 Homes</li>
+      </ul>
+      <strong>$10</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a>
+    </div>
+
+    <div class="card" style="border:2px solid #ef4444">
+      <h3>LEGEND</h3>
+      <p>Ultimate rank</p>
+      <ul>
+        <li>✔ All perks</li>
+        <li>✔ /god</li>
+        <li>✔ Unlimited Homes</li>
+      </ul>
+      <strong>$20</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CRATES -->
+<section>
+  <h2>📦 CRATES</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3>Vote Key</h3>
+      <p>Basic rewards</p>
+      <strong>$2</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a>
+    </div>
+
+    <div class="card">
+      <h3>Epic Key</h3>
+      <p>Better rewards</p>
+      <strong>$5</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a>
+    </div>
+
+    <div class="card" style="border:2px solid gold">
+      <h3>Legendary Crate</h3>
+      <p>Best items</p>
+      <strong>$10</strong><br>
+      <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">BUY</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Strong Valerry • Secure Payments via Discord
+</footer>
+
+</body>
+</html>
