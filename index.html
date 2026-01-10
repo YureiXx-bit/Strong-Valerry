@@ -8,26 +8,18 @@
 <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 
 <style>
-html { scroll-behavior:smooth; }
-
 :root{
-  --bg:#0f172a;
-  --card:#020617;
+  --bg:#0b1220;
+  --card:#0f172a;
   --text:#e5e7eb;
   --accent:#22c55e;
-  --offline:#ef4444;
-}
-
-body.light{
-  --bg:#e5e7eb;
-  --card:#ffffff;
-  --text:#020617;
-  --accent:#16a34a;
+  --danger:#ef4444;
+  --warn:#facc15;
 }
 
 body{
   margin:0;
-  font-family:'Minecraftia',Arial,sans-serif;
+  font-family:'Minecraftia', Arial, sans-serif;
   background:var(--bg);
   color:var(--text);
 }
@@ -35,22 +27,18 @@ body{
 nav{
   position:sticky;
   top:0;
-  background:var(--card);
+  background:#020617;
   padding:15px 30px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   z-index:1000;
 }
 
-nav a,nav button{
-  margin-left:15px;
+nav a{
   color:var(--text);
-  background:none;
-  border:none;
-  cursor:pointer;
   text-decoration:none;
-  font-family:inherit;
+  margin-left:20px;
+  font-size:.7rem;
 }
 
 header{
@@ -58,37 +46,35 @@ header{
   padding:120px 20px;
 }
 
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:80px 20px;
+.btn{
+  background:var(--accent);
+  color:#000;
+  padding:10px 20px;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:.7rem;
+  display:inline-block;
+  margin-top:15px;
 }
 
-h1,h2{text-align:center;}
-
-.card{
-  background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.35);
+section{
+  padding:80px 20px;
   text-align:center;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:auto;
 }
 
-.btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  background:var(--accent);
-  color:#000;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 0 25px rgba(0,0,0,.4);
 }
 
 .dot{
@@ -96,25 +82,39 @@ h1,h2{text-align:center;}
   height:12px;
   border-radius:50%;
   display:inline-block;
-  margin-right:6px;
 }
 
-.online{background:var(--accent);}
-.offline{background:var(--offline);}
+.dot.online{background:var(--accent)}
+.dot.offline{background:var(--danger)}
+.dot.warn{background:var(--warn)}
 
-.server-icon{
-  width:96px;
-  height:96px;
-  border-radius:16px;
-  image-rendering:pixelated;
-  margin-bottom:15px;
-  display:none;
+.ip-box{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+}
+
+input{
+  background:#020617;
+  color:white;
+  border:none;
+  padding:10px;
+  width:220px;
+  border-radius:6px;
+  text-align:center;
+}
+
+progress{
+  width:100%;
+  height:18px;
+  border-radius:8px;
 }
 
 footer{
   text-align:center;
-  padding:40px;
-  opacity:.7;
+  padding:30px;
+  font-size:.6rem;
+  opacity:.6;
 }
 </style>
 </head>
@@ -124,127 +124,144 @@ footer{
 <nav>
   <div>⛏ STRONG VALERRY</div>
   <div>
-    <a href="#home">HOME</a>
     <a href="#status">STATUS</a>
     <a href="#store">STORE</a>
     <a href="#join">JOIN</a>
     <a href="#discord">DISCORD</a>
-    <button onclick="toggleTheme()">☀ / 🌙</button>
   </div>
 </nav>
 
-<header id="home">
+<header>
   <h1>STRONG VALERRY</h1>
   <p>SURVIVAL • PVP • ECONOMY</p>
   <a class="btn" href="#join">PLAY NOW</a>
 </header>
 
 <!-- STATUS -->
-<section id="status" style="display:none">
+<section id="status">
   <h2>SERVER STATUS</h2>
 
-  <div class="card">
-    <img id="serverIcon" class="server-icon">
+  <div class="grid">
+    <div class="card">
+      <p>
+        <span id="dot" class="dot offline"></span>
+        <strong id="statusText">Checking...</strong>
+      </p>
 
-    <p>
-      <span id="dot" class="dot"></span>
-      <strong id="statusText"></strong>
-    </p>
+      <p>Players: <strong id="players">-</strong></p>
+      <p>Version: <strong id="version">-</strong></p>
 
-    <p>Players: <span id="players">-</span></p>
-    <p>Version: <span id="version">-</span></p>
-    <pre id="motd"></pre>
+      <p style="margin-top:15px">Uptime</p>
+      <progress id="uptimeBar" value="0" max="100"></progress>
+      <small id="uptimeText">0 min</small>
+
+      <p style="margin-top:15px">
+        Last online:<br>
+        <small id="lastOnline">Never</small>
+      </p>
+
+      <pre id="motd">Loading...</pre>
+    </div>
   </div>
 </section>
 
+<!-- STORE -->
 <section id="store">
   <h2>STORE</h2>
   <div class="grid">
-    <div class="card"><h3>VIP</h3><p>$5</p></div>
-    <div class="card"><h3>MVP</h3><p>$10</p></div>
-    <div class="card"><h3>LEGEND</h3><p>$20</p></div>
+    <div class="card">VIP<br>$5</div>
+    <div class="card">MVP<br>$10</div>
+    <div class="card">LEGEND<br>$20</div>
   </div>
 </section>
 
+<!-- JOIN -->
 <section id="join">
   <h2>HOW TO JOIN</h2>
   <div class="grid">
     <div class="card">
-      <ol>
+      <ol style="text-align:left">
         <li>Open Minecraft Java</li>
-        <li>Multiplayer → Add Server</li>
-        <li>Paste the IP</li>
+        <li>Multiplayer</li>
+        <li>Add Server</li>
+        <li>Paste IP</li>
       </ol>
     </div>
+
     <div class="card">
-      <h3>Server IP</h3>
-      <input id="ipInput" value="Strong-Valerry.aternos.me" readonly
-        style="width:100%;padding:10px;border-radius:10px;border:none;font-family:inherit">
-      <a class="btn" onclick="copyIP()">COPY IP</a>
+      <div class="ip-box">
+        <input id="ipInput" value="Strong-Valerry.aternos.me" readonly>
+        <button class="btn" onclick="copyIP()">COPY</button>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- DISCORD -->
 <section id="discord">
   <h2>DISCORD</h2>
-  <div style="text-align:center">
-    <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">JOIN DISCORD</a>
-  </div>
+  <a class="btn" href="https://discord.gg/VcNqSgA8q6" target="_blank">
+    JOIN DISCORD
+  </a>
 </section>
 
 <footer>© 2026 Strong Valerry</footer>
 
 <script>
-const SERVER_IP = 'Strong-Valerry.aternos.me';
+const SERVER_IP = "Strong-Valerry.aternos.me";
 
-function toggleTheme(){
-  document.body.classList.toggle('light');
-}
+let onlineSince = null;
 
 function copyIP(){
   navigator.clipboard.writeText(SERVER_IP);
-  alert('IP Copied!');
+  alert("IP Copied!");
 }
 
 function updateStatus(){
   fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`, {cache:'no-store'})
-    .then(r=>r.json())
-    .then(d=>{
-      if(!d.players) throw 'offline';
+    .then(res => res.json())
+    .then(data => {
+      if(!data.online){
+        dot.className = "dot offline";
+        statusText.textContent = "OFFLINE";
+        players.textContent = "-";
+        version.textContent = "-";
+        motd.textContent = "Server offline";
+        uptimeBar.value = 0;
+        uptimeText.textContent = "0 min";
 
-      // AUTO-HIDE IDLE (0 players)
-      if(d.players.online === 0){
-        document.getElementById('status').style.display = 'none';
+        localStorage.setItem("lastOnline", new Date().toLocaleString());
+        lastOnline.textContent = localStorage.getItem("lastOnline");
+        onlineSince = null;
         return;
       }
 
-      // SHOW ONLY WHEN REALLY ONLINE
-      document.getElementById('status').style.display = 'block';
+      dot.className = "dot online";
+      players.textContent = `${data.players.online}/${data.players.max}`;
+      version.textContent = data.version.name_clean;
+      motd.textContent = data.motd.clean;
 
-      if(d.icon){
-        serverIcon.src = d.icon;
-        serverIcon.style.display = 'block';
+      if(!onlineSince){
+        onlineSince = Date.now();
       }
 
-      dot.className = 'dot online';
-      statusText.textContent = 'ONLINE';
-      players.textContent = `${d.players.online}/${d.players.max}`;
-      version.textContent = d.version.name_clean;
-      motd.textContent = d.motd.clean;
+      const minutes = Math.floor((Date.now() - onlineSince) / 60000);
+      uptimeText.textContent = minutes + " min";
+      uptimeBar.value = Math.min(minutes,100);
+
+      statusText.textContent = data.players.online === 0
+        ? "STARTING / EMPTY"
+        : "ONLINE";
+
+      lastOnline.textContent = "Online now";
     })
     .catch(()=>{
-      document.getElementById('status').style.display = 'block';
-      dot.className = 'dot offline';
-      statusText.textContent = 'OFFLINE';
-      players.textContent = '-';
-      version.textContent = '-';
-      motd.textContent = 'Server is offline';
-      serverIcon.style.display = 'none';
+      statusText.textContent = "ERROR";
     });
 }
 
 updateStatus();
-setInterval(updateStatus, 10000);
+setInterval(updateStatus, 5000);
 </script>
 
 </body>
